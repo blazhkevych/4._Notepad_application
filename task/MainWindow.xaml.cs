@@ -15,9 +15,15 @@ using System.Windows.Shapes;
 
 namespace task
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+    // Приложение "Блокнот"
+    // Разработать приложение «Блокнот», обладающее той же
+    // функциональностью, что и стандартный «Блокнот»
+    // операционной системы Windows.
+
+    // Notepad application
+    // Develop a notepad application that has the same
+    // functionality as the standard Notepad
+    // Windows operating system.
     public partial class MainWindow : Window
     {
         public MainWindow()
