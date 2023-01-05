@@ -30,5 +30,25 @@ namespace task
         {
             InitializeComponent();
         }
+
+        private void NewCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void NewCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            TxtEditor.Text = "";
+        }
+
+        private void NewWindowCommand_PreviewCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void NewWindowCommand_PreviewExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
