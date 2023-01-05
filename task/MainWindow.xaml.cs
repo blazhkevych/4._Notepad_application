@@ -29,6 +29,8 @@ namespace task
         public MainWindow()
         {
             InitializeComponent();
+            // Window position in the center of the screen.
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 
         private void NewCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -41,14 +43,15 @@ namespace task
             TxtEditor.Text = "";
         }
 
-        private void NewWindowCommand_PreviewCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        private void NewWIndowCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
         }
 
-        private void NewWindowCommand_PreviewExecuted(object sender, ExecutedRoutedEventArgs e)
+        private void NewWindowCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            MainWindow newWindow = new MainWindow();
+            newWindow.Show();
         }
     }
 }

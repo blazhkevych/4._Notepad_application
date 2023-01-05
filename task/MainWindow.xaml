@@ -8,6 +8,7 @@
         Title="No name - Notepad" Height="450" Width="800">
     <Window.CommandBindings>
         <CommandBinding Command="New" CanExecute="NewCommand_CanExecute" Executed="NewCommand_Executed"/>
+        <CommandBinding Command="New window" CanExecute="NewWIndowCommand_CanExecute" Executed="NewWindowCommand_Executed"/>
     </Window.CommandBindings>
 
     <Grid>
@@ -15,7 +16,7 @@
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="File">
                     <MenuItem Header="New" Command="New" />
-                    <MenuItem Header="New window"/>
+                    <MenuItem Header="New window" Command="New window"/>
                     <MenuItem Header="Open" />
                     <MenuItem Header="Save" />
                     <MenuItem Header="Save as" />
