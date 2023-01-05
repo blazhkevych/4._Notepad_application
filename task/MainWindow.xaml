@@ -6,17 +6,21 @@
         xmlns:local="clr-namespace:task"
         mc:Ignorable="d"
         Title="No name - Notepad" Height="450" Width="800">
-    <Window.CommandBindings>
+
+    <FrameworkElement.Resources>
+        <RoutedUICommand x:Key="NewWindow" Text="New window"/>
+    </FrameworkElement.Resources>
+    <FrameworkElement.CommandBindings>
         <CommandBinding Command="New" CanExecute="NewCommand_CanExecute" Executed="NewCommand_Executed"/>
-        <CommandBinding Command="New window" CanExecute="NewWIndowCommand_CanExecute" Executed="NewWindowCommand_Executed"/>
-    </Window.CommandBindings>
+        <CommandBinding Command="{StaticResource NewWindow}" CanExecute="NewWIndowCommand_CanExecute" Executed="NewWindowCommand_Executed"/>
+    </FrameworkElement.CommandBindings>
 
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="File">
                     <MenuItem Header="New" Command="New" />
-                    <MenuItem Header="New window" Command="New window"/>
+                    <MenuItem Header="New window" Command="{StaticResource NewWindow}"/>
                     <MenuItem Header="Open" />
                     <MenuItem Header="Save" />
                     <MenuItem Header="Save as" />
@@ -26,17 +30,32 @@
                     <Separator />
                     <MenuItem Header="Exit" />
                 </MenuItem>
-                <MenuItem Header="_Tools">
-                    <MenuItem Header="_Manage users">
-                        <MenuItem.Icon>
-                            <Image Source="/WpfTutorialSamples;component/Images/user.png" />
-                        </MenuItem.Icon>
+                <MenuItem Header="Edit">
+                    <MenuItem Header="Cut" />
+                    <MenuItem Header="Copy" />
+                    <MenuItem Header="Insert" />
+                    <MenuItem Header="Delete" />
+                    <Separator />
+                    <MenuItem Header="Find" />
+                    <MenuItem Header="Find next" />
+                    <MenuItem Header="Find earlier" />
+                    <MenuItem Header="Replace" />
+                    <MenuItem Header="Go" />
+                    <Separator />
+                    <MenuItem Header="Choose all" />
+                    <MenuItem Header="Time and date" />
+                </MenuItem>
+                <MenuItem Header="View">
+                    <MenuItem Header="Scale">
+                        <MenuItem Header="Increase" />
+                        <MenuItem Header="Decrease" />
+                        <MenuItem Header="Restore default scale" />
                     </MenuItem>
-                    <MenuItem Header="_Show groups" IsCheckable="True" IsChecked="True" />
+                    <MenuItem Header="Status bar" />
+                    <MenuItem Header="World wrap" />
                 </MenuItem>
             </Menu>
             <TextBox AcceptsReturn="True" Name="TxtEditor" />
         </DockPanel>
-
     </Grid>
 </Window>
