@@ -16,14 +16,12 @@ using System.Windows.Shapes;
 namespace task
 {
     // Приложение "Блокнот"
-    // Разработать приложение «Блокнот», обладающее той же
-    // функциональностью, что и стандартный «Блокнот»
-    // операционной системы Windows.
+    // Разработать приложение «Блокнот», обладающее той же функциональностью,
+    // что и стандартный «Блокнот» операционной системы Windows.
 
     // Notepad application
-    // Develop a notepad application that has the same
-    // functionality as the standard Notepad
-    // Windows operating system.
+    // Develop a notepad application that has the same functionality
+    // as the standard Notepad Windows operating system.
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -33,25 +31,109 @@ namespace task
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 
-        //private void NewCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        //{
-        //    e.CanExecute = true;
-        //}
+        private void NewDocument_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
 
-        //private void NewCommand_Executed(object sender, ExecutedRoutedEventArgs e)
-        //{
-        //    TxtEditor.Text = "";
-        //}
+        private void NewWindow_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
 
-        //private void NewWIndowCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        //{
-        //    e.CanExecute = true;
-        //}
+        private void Open_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
 
-        //private void NewWindowCommand_Executed(object sender, ExecutedRoutedEventArgs e)
-        //{
-        //    MainWindow newWindow = new MainWindow();
-        //    newWindow.Show();
-        //}
+        private void Save_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void SaveAs_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void PageSetup_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Exit_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Undo_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Cut_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Copy_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Paste_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Delete_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Replace_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void SelectAll_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void TimeDate_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ZoomIn_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ZoomOut_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ZoomRestore_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ShowStatusBar_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void WordWrap_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void TextArea_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //throw new NotImplementedException();
+        }
     }
 }
