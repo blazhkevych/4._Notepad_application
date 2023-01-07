@@ -7,16 +7,41 @@
         mc:Ignorable="d"
         Title="No name - Notepad" Height="450" Width="800">
 
-    <FrameworkElement.Resources>
+    <!--<FrameworkElement.Resources>
         <RoutedUICommand x:Key="NewWindow" Text="New window"/>
     </FrameworkElement.Resources>
     <FrameworkElement.CommandBindings>
         <CommandBinding Command="New" CanExecute="NewCommand_CanExecute" Executed="NewCommand_Executed"/>
         <CommandBinding Command="{StaticResource NewWindow}" CanExecute="NewWIndowCommand_CanExecute" Executed="NewWindowCommand_Executed"/>
-    </FrameworkElement.CommandBindings>
+    </FrameworkElement.CommandBindings>-->
 
     <Grid>
-        <DockPanel>
+        <Grid.RowDefinitions>
+            <!--Header-->
+            <RowDefinition Height="40"/>
+            <!--Body-->
+            <RowDefinition />
+            <!--Footer-->
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <!--Header-->
+        <Rectangle Fill="{StaticResource HeaderFooter}" />
+        <!--Menu-->
+        <Menu Grid.Row="0" Background="Transparent" VerticalContentAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource HeaderFooterText}">
+            <MenuItem Header="File" VerticalAlignment="Center" Background="{StaticResource HeaderFooter}">
+            </MenuItem>
+
+
+        </Menu>
+
+        <!--Body-->
+        <Rectangle Fill="{StaticResource Body}" Grid.Row="1" />
+        <!--Footer-->
+        <Rectangle Fill="{StaticResource HeaderFooter}" Grid.Row="2" />
+
+
+
+        <!--<DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="File">
                     <MenuItem Header="New" Command="New" />
@@ -56,6 +81,6 @@
                 </MenuItem>
             </Menu>
             <TextBox AcceptsReturn="True" Name="TxtEditor" />
-        </DockPanel>
+        </DockPanel>-->
     </Grid>
 </Window>

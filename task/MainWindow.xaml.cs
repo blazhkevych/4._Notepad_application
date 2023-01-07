@@ -33,25 +33,25 @@ namespace task
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 
-        private void NewCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = true;
-        }
+        //private void NewCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        //{
+        //    e.CanExecute = true;
+        //}
 
-        private void NewCommand_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            TxtEditor.Text = "";
-        }
+        //private void NewCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        //{
+        //    TxtEditor.Text = "";
+        //}
 
-        private void NewWIndowCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = true;
-        }
+        //private void NewWIndowCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        //{
+        //    e.CanExecute = true;
+        //}
 
-        private void NewWindowCommand_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            MainWindow newWindow = new MainWindow();
-            newWindow.Show();
-        }
+        //private void NewWindowCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        //{
+        //    MainWindow newWindow = new MainWindow();
+        //    newWindow.Show();
+        //}
     }
 }

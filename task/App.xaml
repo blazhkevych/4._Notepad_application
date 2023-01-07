@@ -4,6 +4,13 @@
              xmlns:local="clr-namespace:task"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <SolidColorBrush x:Key="HeaderFooter" Color="#FF1A1A1A" />
+            <SolidColorBrush x:Key="Body" Color="#FF222222" />
+
+            <SolidColorBrush x:Key="HeaderFooterText" Color="#FFEAEAEA" />
+            <SolidColorBrush x:Key="BodyText" Color="#FFB7B7B7"  />
+        </ResourceDictionary>
+
     </Application.Resources>
 </Application>
