@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Untitled - Notepad" Height="720" Width="1024">
+        Title="Untitled - Notepad" Height="720" Width="1024" >
 
     <!--<FrameworkElement.Resources>
         <RoutedUICommand x:Key="NewWindow" Text="New window"/>
@@ -13,6 +13,11 @@
         <CommandBinding Command="New" CanExecute="NewCommand_CanExecute" Executed="NewCommand_Executed"/>
         <CommandBinding Command="{StaticResource NewWindow}" CanExecute="NewWIndowCommand_CanExecute" Executed="NewWindowCommand_Executed"/>
     </FrameworkElement.CommandBindings>-->
+
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Open" Executed="Open_Executed" />
+        <CommandBinding Command="ApplicationCommands.Save" Executed="Save_Executed" />
+    </Window.CommandBindings>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -30,95 +35,99 @@
               Foreground="{StaticResource HeaderTextColor}">
             <MenuItem Header="File" VerticalAlignment="Center" Background="{StaticResource HeaderBackgroundColor}">
                 <MenuItem x:Name="NewDocumentMenuItem" Header="New" InputGestureText="CTRL+N"
-                          Click="NewDocument_MenuItem_Click" Background="{StaticResource HeaderBackgroundColor}"
-                          Foreground="{StaticResource HeaderTextColor}" />
+                          Click="NewDocument_MenuItem_Click" Background="{StaticResource MenuBackgroundColor}"
+                          Foreground="{StaticResource MenuTextColor}" 
+                          Command=""
+                          />
                 <MenuItem x:Name="NewWindowMenuItem" Header="New Window" InputGestureText="CTRL+Shift+N"
-                          Click="NewWindow_MenuItem_Click" Background="{StaticResource HeaderBackgroundColor}"
-                          Foreground="{StaticResource HeaderTextColor}" />
+                          Click="NewWindow_MenuItem_Click" Background="{StaticResource MenuBackgroundColor}"
+                          Foreground="{StaticResource MenuTextColor}" />
                 <MenuItem x:Name="OpenMenuItem" Header="Open" InputGestureText="CTRL+O" Click="Open_MenuItem_Click"
-                          Background="{StaticResource HeaderBackgroundColor}"
-                          Foreground="{StaticResource HeaderTextColor}" />
+                          Background="{StaticResource MenuBackgroundColor}"
+                          Foreground="{StaticResource MenuTextColor}" />
                 <MenuItem x:Name="SaveMenuItem" Header="Save" InputGestureText="CTRL+S" Click="Save_MenuItem_Click"
-                          Background="{StaticResource HeaderBackgroundColor}"
-                          Foreground="{StaticResource HeaderTextColor}" />
+                          Background="{StaticResource MenuBackgroundColor}"
+                          Foreground="{StaticResource MenuTextColor}" />
                 <MenuItem x:Name="SaveAsMenuItem" Header="Save As" InputGestureText="CTRL+Shift+S"
-                          Click="SaveAs_MenuItem_Click" Background="{StaticResource HeaderBackgroundColor}"
-                          Foreground="{StaticResource HeaderTextColor}" />
+                          Click="SaveAs_MenuItem_Click" Background="{StaticResource MenuBackgroundColor}"
+                          Foreground="{StaticResource MenuTextColor}" />
                 <Separator />
                 <MenuItem x:Name="PageSetupMenuItem" Header="Page Setup" Click="PageSetup_MenuItem_Click"
-                          Background="{StaticResource HeaderBackgroundColor}"
-                          Foreground="{StaticResource HeaderTextColor}" />
-                <MenuItem Header="Print" InputGestureText="CTRL+P" Background="{StaticResource HeaderBackgroundColor}"
-                          Foreground="{StaticResource HeaderTextColor}" />
+                          Background="{StaticResource MenuBackgroundColor}"
+                          Foreground="{StaticResource MenuTextColor}" />
+                <MenuItem Header="Print" InputGestureText="CTRL+P" Background="{StaticResource MenuBackgroundColor}"
+                          Foreground="{StaticResource MenuTextColor}" />
                 <MenuItem x:Name="ExitMenuItem" Header="Exit" Click="Exit_MenuItem_Click"
-                          Background="{StaticResource HeaderBackgroundColor}"
-                          Foreground="{StaticResource HeaderTextColor}" />
+                          Background="{StaticResource MenuBackgroundColor}"
+                          Foreground="{StaticResource MenuTextColor}" />
             </MenuItem>
             <MenuItem Header="Edit">
                 <MenuItem x:Name="UndoMenuItem" Header="Undo" InputGestureText="CTRL+Z" Click="Undo_MenuItem_Click"
-                          Background="{StaticResource HeaderBackgroundColor}"
-                          Foreground="{StaticResource HeaderTextColor}" />
+                          Background="{StaticResource MenuBackgroundColor}"
+                          Foreground="{StaticResource MenuTextColor}" />
                 <Separator />
                 <MenuItem x:Name="CutMenuItem" Header="Cut" InputGestureText="CTRL+X" Click="Cut_MenuItem_Click"
-                          Background="{StaticResource HeaderBackgroundColor}"
-                          Foreground="{StaticResource HeaderTextColor}" />
+                          Background="{StaticResource MenuBackgroundColor}"
+                          Foreground="{StaticResource MenuTextColor}" />
                 <MenuItem x:Name="CopyMenuItem" Header="Copy" InputGestureText="CTRL+C" Click="Copy_MenuItem_Click"
-                          Background="{StaticResource HeaderBackgroundColor}"
-                          Foreground="{StaticResource HeaderTextColor}" />
+                          Background="{StaticResource MenuBackgroundColor}"
+                          Foreground="{StaticResource MenuTextColor}" />
                 <MenuItem x:Name="PasteMenuItem" Header="Paste" InputGestureText="CTRL+V" Click="Paste_MenuItem_Click"
-                          Background="{StaticResource HeaderBackgroundColor}"
-                          Foreground="{StaticResource HeaderTextColor}" />
+                          Background="{StaticResource MenuBackgroundColor}"
+                          Foreground="{StaticResource MenuTextColor}" />
                 <MenuItem x:Name="DeleteMenuItem" Header="Delete" InputGestureText="Del" Click="Delete_MenuItem_Click"
-                          Background="{StaticResource HeaderBackgroundColor}"
-                          Foreground="{StaticResource HeaderTextColor}" />
+                          Background="{StaticResource MenuBackgroundColor}"
+                          Foreground="{StaticResource MenuTextColor}" />
                 <Separator />
-                <MenuItem Header="Find" InputGestureText="CTRL+F" Background="{StaticResource HeaderBackgroundColor}"
-                          Foreground="{StaticResource HeaderTextColor}" />
-                <MenuItem Header="Find Next" InputGestureText="F3" Background="{StaticResource HeaderBackgroundColor}"
-                          Foreground="{StaticResource HeaderTextColor}" />
+                <MenuItem Header="Find" InputGestureText="CTRL+F" Background="{StaticResource MenuBackgroundColor}"
+                          Foreground="{StaticResource MenuTextColor}" />
+                <MenuItem Header="Find Next" InputGestureText="F3" Background="{StaticResource MenuBackgroundColor}"
+                          Foreground="{StaticResource MenuTextColor}" />
                 <MenuItem Header="Find Previous" InputGestureText="Shift+F3"
-                          Background="{StaticResource HeaderBackgroundColor}"
-                          Foreground="{StaticResource HeaderTextColor}" />
+                          Background="{StaticResource MenuBackgroundColor}"
+                          Foreground="{StaticResource MenuTextColor}" />
                 <MenuItem Header="Replace" x:Name="ReplaceMenuItem" InputGestureText="CTRL+H"
-                          Click="Replace_MenuItem_Click" Background="{StaticResource HeaderBackgroundColor}"
-                          Foreground="{StaticResource HeaderTextColor}" />
-                <MenuItem Header="Go to" InputGestureText="CTRL+G" Background="{StaticResource HeaderBackgroundColor}"
-                          Foreground="{StaticResource HeaderTextColor}" />
+                          Click="Replace_MenuItem_Click" Background="{StaticResource MenuBackgroundColor}"
+                          Foreground="{StaticResource MenuTextColor}" />
+                <MenuItem Header="Go to" InputGestureText="CTRL+G" Background="{StaticResource MenuBackgroundColor}"
+                          Foreground="{StaticResource MenuTextColor}" />
                 <Separator />
                 <MenuItem x:Name="SelectAllMenuItem" Header="Select all" InputGestureText="CTRL+A"
-                          Click="SelectAll_MenuItem_Click" Background="{StaticResource HeaderBackgroundColor}"
-                          Foreground="{StaticResource HeaderTextColor}" />
+                          Click="SelectAll_MenuItem_Click" Background="{StaticResource MenuBackgroundColor}"
+                          Foreground="{StaticResource MenuTextColor}" />
                 <MenuItem x:Name="TimeDateMenuItem" Header="Time/Date" InputGestureText="F5"
-                          Click="TimeDate_MenuItem_Click" Background="{StaticResource HeaderBackgroundColor}"
-                          Foreground="{StaticResource HeaderTextColor}" />
+                          Click="TimeDate_MenuItem_Click" Background="{StaticResource MenuBackgroundColor}"
+                          Foreground="{StaticResource MenuTextColor}" />
                 <Separator />
-                <MenuItem Header="Font" InputGestureText="CTRL+0" />
+                <MenuItem Header="Font" InputGestureText="CTRL+0" Background="{StaticResource MenuBackgroundColor}"
+                          Foreground="{StaticResource MenuTextColor}"/>
             </MenuItem>
             <MenuItem Header="View">
-                <MenuItem Header="Zoom">
+                <MenuItem Header="Zoom" Background="{StaticResource MenuBackgroundColor}"
+                          Foreground="{StaticResource MenuTextColor}">
                     <MenuItem x:Name="ZoomInMenuItem" Header="Zoom in" InputGestureText="CTRL+Plus"
-                              Click="ZoomIn_MenuItem_Click" Background="{StaticResource HeaderBackgroundColor}"
-                              Foreground="{StaticResource HeaderTextColor}" />
+                              Click="ZoomIn_MenuItem_Click" Background="{StaticResource MenuBackgroundColor}"
+                              Foreground="{StaticResource MenuTextColor}" />
                     <MenuItem x:Name="ZoomOutMenuItem" Header="Zoom out" InputGestureText="CTRL+Minus"
-                              Click="ZoomOut_MenuItem_Click" Background="{StaticResource HeaderBackgroundColor}"
-                              Foreground="{StaticResource HeaderTextColor}" />
+                              Click="ZoomOut_MenuItem_Click" Background="{StaticResource MenuBackgroundColor}"
+                              Foreground="{StaticResource MenuTextColor}" />
                     <MenuItem x:Name="ZoomRestoreMenuItem" Header="Restore default zoom" InputGestureText="CTRL+0"
-                              Click="ZoomRestore_MenuItem_Click" Background="{StaticResource HeaderBackgroundColor}"
-                              Foreground="{StaticResource HeaderTextColor}" />
+                              Click="ZoomRestore_MenuItem_Click" Background="{StaticResource MenuBackgroundColor}"
+                              Foreground="{StaticResource MenuTextColor}" />
                 </MenuItem>
                 <Separator />
                 <MenuItem x:Name="ShowStatusBarMenuItem" Header="Status" IsCheckable="True" IsChecked="True"
-                          Click="ShowStatusBar_MenuItem_Click" Background="{StaticResource HeaderBackgroundColor}"
-                          Foreground="{StaticResource HeaderTextColor}" />
+                          Click="ShowStatusBar_MenuItem_Click" Background="{StaticResource MenuBackgroundColor}"
+                          Foreground="{StaticResource MenuTextColor}" />
                 <MenuItem x:Name="WordWrapMenuItem" Header="Word Wrap" IsCheckable="True" IsChecked="True"
-                          Click="WordWrap_MenuItem_Click" Background="{StaticResource HeaderBackgroundColor}"
-                          Foreground="{StaticResource HeaderTextColor}" />
+                          Click="WordWrap_MenuItem_Click" Background="{StaticResource MenuBackgroundColor}"
+                          Foreground="{StaticResource MenuTextColor}" />
             </MenuItem>
         </Menu>
 
         <!--Body-->
         <Rectangle Fill="{StaticResource BodyBackgroundColor}" Grid.Row="1" />
-        <TextBox x:Name="TextArea"
+        <!--<TextBox x:Name="TextArea"
                  Grid.Row="1"
                  Background="Transparent"
                  BorderThickness="0" Padding="20" FontSize="16"
@@ -126,9 +135,18 @@
                  Foreground="{StaticResource BodyTextColor}" CaretBrush="White"
                  AcceptsReturn="True"
                  TextWrapping="Wrap" TextChanged="TextArea_TextChanged"
-                 VerticalScrollBarVisibility="Auto" />
+                 VerticalScrollBarVisibility="Auto" />-->
+        <RichTextBox x:Name="TextArea"
+                     Grid.Row="1"
+                     Background="Transparent"
+                     BorderThickness="0" Padding="20" FontSize="16"
+                     FontFamily="Lucida Console"
+                     Foreground="{StaticResource BodyTextColor}"  
+                     CaretBrush="White"
+                     AcceptsReturn="True"
+                     VerticalScrollBarVisibility="Auto" />
         <!--Footer-->
-        <Rectangle Fill="{StaticResource HeaderBackgroundColor}" Grid.Row="2" />
+        <Rectangle Fill="{StaticResource FooterBackgroundColor}" Grid.Row="2" />
         <Grid x:Name="StatusBar" Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
@@ -137,21 +155,21 @@
                 <ColumnDefinition Width="120" />
             </Grid.ColumnDefinitions>
             <!--Stats Ln/Col-->
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0">
-                <TextBlock Text="Ln" Margin="0,0,5,0" />
-                <TextBlock x:Name="LineCountText" Text="0" />
-                <TextBlock Text=", " />
-                <TextBlock Text="Col" Margin="0,0,5,0" />
-                <TextBlock x:Name="ColumnCountText" Text="0" />
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0" >
+                <TextBlock Text="Ln" Margin="0,0,5,0" Foreground="{StaticResource FooterTextColor}" />
+                <TextBlock x:Name="LineCountText" Text="0" Foreground="{StaticResource FooterTextColor}"/>
+                <TextBlock Text=", " Foreground="{StaticResource FooterTextColor}"/>
+                <TextBlock Text="Col" Margin="0,0,5,0" Foreground="{StaticResource FooterTextColor}"/>
+                <TextBlock x:Name="ColumnCountText" Text="0" Foreground="{StaticResource FooterTextColor}"/>
             </StackPanel>
             <!--zoom-->
-            <TextBlock Grid.Column="1" Text="100%" VerticalAlignment="Center" Margin="10,0" />
+            <TextBlock Grid.Column="1" Text="100%" VerticalAlignment="Center" Margin="10,0" Foreground="{StaticResource FooterTextColor}"/>
             <Rectangle Width="1" Grid.Column="1" HorizontalAlignment="Left" Fill="#FF232323" Margin="0 5 " />
             <!--format-->
-            <TextBlock Grid.Column="2" Text="Windows (CRLF)" VerticalAlignment="Center" Margin="10,0" />
+            <TextBlock Grid.Column="2" Text="Windows (CRLF)" VerticalAlignment="Center" Margin="10,0" Foreground="{StaticResource FooterTextColor}"/>
             <Rectangle Width="1" Grid.Column="2" HorizontalAlignment="Left" Fill="#FF232323" Margin="0 5 " />
             <!--encoding-->
-            <TextBlock Grid.Column="3" Text="UTF-8" VerticalAlignment="Center" Margin="10,0" />
+            <TextBlock Grid.Column="3" Text="UTF-8" VerticalAlignment="Center" Margin="10,0" Foreground="{StaticResource FooterTextColor}"/>
             <Rectangle Width="1" Grid.Column="3" HorizontalAlignment="Left" Fill="#FF232323" Margin="0 5 " />
         </Grid>
 

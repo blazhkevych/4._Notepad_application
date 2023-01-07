@@ -12,7 +12,7 @@
             <!--цвет текста меню-->
             <SolidColorBrush x:Key="MenuTextColor" Color="#bfbfbf" />
             <!--цвет фона меню-->
-            <SolidColorBrush x:Key="MenuBackgroundColor" Color="#202020" />
+            <SolidColorBrush x:Key="MenuBackgroundColor" Color="#2c2c2c" />
 
             <!--цвет фона тела-->
             <SolidColorBrush x:Key="BodyBackgroundColor" Color="#272727" />
@@ -22,7 +22,7 @@
             <!--цвет фона нижнего колонтитула-->
             <SolidColorBrush x:Key="FooterBackgroundColor" Color="#202020" />
             <!--цвет текста нижнего колонтитула-->
-            <SolidColorBrush x:Key="FooterTextColor" Color="#bfbfbf" />
+            <SolidColorBrush x:Key="FooterTextColor" Color="#979797" />
         </ResourceDictionary>
 
     </Application.Resources>
