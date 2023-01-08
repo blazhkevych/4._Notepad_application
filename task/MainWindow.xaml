@@ -7,6 +7,7 @@
         Title="Untitled - Notepad" Height="720" Width="1024">
 
     <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.New" Executed="New_Executed" />
         <CommandBinding Command="ApplicationCommands.Open" Executed="Open_Executed" />
         <CommandBinding Command="ApplicationCommands.Save" Executed="Save_Executed" />
         <CommandBinding Command="ApplicationCommands.SaveAs" Executed="SaveAs_Executed" />
@@ -24,28 +25,28 @@
         <!--Header-->
         <!--Menu-->
         <Menu VerticalContentAlignment="Center" VerticalAlignment="Center" Height="20">
-            <MenuItem Header="File" VerticalAlignment="Center" >
+            <MenuItem Header="File" VerticalAlignment="Center">
                 <!--Создать новый документ.-->
-                <MenuItem x:Name="NewDocumentMenuItem" Header="New" InputGestureText="CTRL+N"/>
+                <MenuItem x:Name="NewDocumentMenuItem" Header="New" Command="ApplicationCommands.New"/>
                 <!--Открыть существующий.-->
                 <MenuItem x:Name="OpenMenuItem" Header="Open" InputGestureText="CTRL+O"
                           Command="ApplicationCommands.Open" />
                 <!--Сохранить.-->
-                <MenuItem x:Name="SaveMenuItem" Header="Save" InputGestureText="CTRL+S" 
-                          Command="ApplicationCommands.Save"/>
+                <MenuItem x:Name="SaveMenuItem" Header="Save" InputGestureText="CTRL+S"
+                          Command="ApplicationCommands.Save" />
                 <!--Сохранить как.-->
                 <MenuItem x:Name="SaveAsMenuItem" Header="Save As" InputGestureText="CTRL+Shift+S"
-                          Click="SaveAs_MenuItem_Click" />
+                         />
             </MenuItem>
             <MenuItem Header="Edit">
                 <!--Копировать.-->
-                <MenuItem x:Name="CopyMenuItem" Header="Copy" InputGestureText="CTRL+C" Click="Copy_MenuItem_Click"/>
+                <MenuItem x:Name="CopyMenuItem" Header="Copy" InputGestureText="CTRL+C" />
                 <!--Вырезать.-->
-                <MenuItem x:Name="CutMenuItem" Header="Cut" InputGestureText="CTRL+X" Click="Cut_MenuItem_Click"/>
+                <MenuItem x:Name="CutMenuItem" Header="Cut" InputGestureText="CTRL+X" />
                 <!--Вставить.-->
-                <MenuItem x:Name="PasteMenuItem" Header="Paste" InputGestureText="CTRL+V" Click="Paste_MenuItem_Click"/>
+                <MenuItem x:Name="PasteMenuItem" Header="Paste" InputGestureText="CTRL+V" />
                 <!--Удалить.-->
-                <MenuItem x:Name="DeleteMenuItem" Header="Delete" InputGestureText="Del" Click="Delete_MenuItem_Click"/>
+                <MenuItem x:Name="DeleteMenuItem" Header="Delete" InputGestureText="Del" />
             </MenuItem>
         </Menu>
 

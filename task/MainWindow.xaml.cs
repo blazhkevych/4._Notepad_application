@@ -18,9 +18,6 @@ namespace task;
 // todo: add borders to the menu/submenu
 public partial class MainWindow : Window
 {
-    // Name of the current file.
-    private string NameOfTheCurrentFile { get; set; } = "Untitled";
-
     public MainWindow()
     {
         InitializeComponent();
@@ -28,108 +25,14 @@ public partial class MainWindow : Window
         WindowStartupLocation = WindowStartupLocation.CenterScreen;
     }
 
-    private void Save_MenuItem_Click(object sender, RoutedEventArgs e)
-    {
-        var dlg = new SaveFileDialog();
-        dlg.Filter = "Rich Text Format (*.rtf)|*.rtf|All files (*.*)|*.*";
-        if (dlg.ShowDialog() == true)
-        {
-            var fileStream = new FileStream(dlg.FileName, FileMode.Create);
-            var range = new TextRange(TextEditor.Document.ContentStart, TextEditor.Document.ContentEnd);
-            range.Save(fileStream, DataFormats.Rtf);
-        }
-    }
-
-    private void SaveAs_MenuItem_Click(object sender, RoutedEventArgs e)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void PageSetup_MenuItem_Click(object sender, RoutedEventArgs e)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void Exit_MenuItem_Click(object sender, RoutedEventArgs e)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void Undo_MenuItem_Click(object sender, RoutedEventArgs e)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void Cut_MenuItem_Click(object sender, RoutedEventArgs e)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void Copy_MenuItem_Click(object sender, RoutedEventArgs e)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void Paste_MenuItem_Click(object sender, RoutedEventArgs e)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void Delete_MenuItem_Click(object sender, RoutedEventArgs e)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void Replace_MenuItem_Click(object sender, RoutedEventArgs e)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void SelectAll_MenuItem_Click(object sender, RoutedEventArgs e)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void TimeDate_MenuItem_Click(object sender, RoutedEventArgs e)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void ZoomIn_MenuItem_Click(object sender, RoutedEventArgs e)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void ZoomOut_MenuItem_Click(object sender, RoutedEventArgs e)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void ZoomRestore_MenuItem_Click(object sender, RoutedEventArgs e)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void ShowStatusBar_MenuItem_Click(object sender, RoutedEventArgs e)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void WordWrap_MenuItem_Click(object sender, RoutedEventArgs e)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void TextArea_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        //throw new NotImplementedException();
-    }
+    // Name of the current file.
+    private string NameOfTheCurrentFile { get; } = "Untitled";
 
     private void Open_Executed(object sender, ExecutedRoutedEventArgs e)
     {
         // todo: Add a question before opening: "Do you want to save changes to the file WITHOUT A NAME?"
 
-        OpenFileDialog openFile = new OpenFileDialog();
+        var openFile = new OpenFileDialog();
         openFile.Filter = "Plain Text File (*.txt)|*.txt|Rich Text File (*.rtf)|*.rtf|All files (*.*)|*.*";
         if (openFile.ShowDialog() == true)
         {
@@ -141,19 +44,23 @@ public partial class MainWindow : Window
 
     private void Save_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-        SaveFileDialog saveFile = new SaveFileDialog();
+        var saveFile = new SaveFileDialog();
         saveFile.FileName = NameOfTheCurrentFile;
         saveFile.Title = "Save";
         saveFile.Filter = "Plain Text File (*.txt)|*.txt|Rich Text File (*.rtf)|*.rtf|All files (*.*)|*.*";
 
-        FileStream fileStream = new FileStream(saveFile.FileName, FileMode.CreateNew);
-        TextRange range = new TextRange(TextEditor.Document.ContentStart, TextEditor.Document.ContentEnd);
+        var fileStream = new FileStream(saveFile.FileName, FileMode.CreateNew);
+        var range = new TextRange(TextEditor.Document.ContentStart, TextEditor.Document.ContentEnd);
         range.Save(fileStream, DataFormats.Text);
-
     }
-
     private void SaveAs_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+    }
+
+
+    private void New_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+        // todo: Add a question before opening: "Do you want to save changes to the file WITHOUT A NAME?" if the file have not been saved yet.
     }
 }
