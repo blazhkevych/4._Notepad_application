@@ -1,7 +1,5 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using Microsoft.Win32;
@@ -53,6 +51,7 @@ public partial class MainWindow : Window
         var range = new TextRange(TextEditor.Document.ContentStart, TextEditor.Document.ContentEnd);
         range.Save(fileStream, DataFormats.Text);
     }
+
     private void SaveAs_Executed(object sender, ExecutedRoutedEventArgs e)
     {
         //throw new NotImplementedException();

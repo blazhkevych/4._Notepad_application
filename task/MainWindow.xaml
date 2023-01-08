@@ -27,7 +27,8 @@
         <Menu VerticalContentAlignment="Center" VerticalAlignment="Center" Height="20">
             <MenuItem Header="File" VerticalAlignment="Center">
                 <!--Создать новый документ.-->
-                <MenuItem x:Name="NewDocumentMenuItem" Header="New" Command="ApplicationCommands.New"/>
+                <MenuItem x:Name="NewDocumentMenuItem" Header="New" 
+                          Command="ApplicationCommands.New" />
                 <!--Открыть существующий.-->
                 <MenuItem x:Name="OpenMenuItem" Header="Open" InputGestureText="CTRL+O"
                           Command="ApplicationCommands.Open" />
@@ -35,8 +36,8 @@
                 <MenuItem x:Name="SaveMenuItem" Header="Save" InputGestureText="CTRL+S"
                           Command="ApplicationCommands.Save" />
                 <!--Сохранить как.-->
-                <MenuItem x:Name="SaveAsMenuItem" Header="Save As" InputGestureText="CTRL+Shift+S"
-                         />
+                <MenuItem x:Name="SaveAsMenuItem" Header="Save As"
+                          Command="ApplicationCommands.SaveAs" />
             </MenuItem>
             <MenuItem Header="Edit">
                 <!--Копировать.-->
@@ -48,6 +49,20 @@
                 <!--Удалить.-->
                 <MenuItem x:Name="DeleteMenuItem" Header="Delete" InputGestureText="Del" />
             </MenuItem>
+            <!--<ToggleButton Command="EditingCommands.ToggleBold" Name="btnBold">
+                <Image Source="Images/bold-button-of-letter-b-symbol.png" />
+            </ToggleButton>-->
+            <DockPanel>
+                <ToolBar DockPanel.Dock="Top">
+                    <ToggleButton Command="EditingCommands.ToggleBold" Name="btnBold">
+                        <Image Source="Images/bold-button-of-letter-b-symbol.png" />
+                    </ToggleButton>
+                    <Separator />
+                    <ComboBox Name="cmbFontFamily" Width="150" SelectionChanged="cmbFontFamily_SelectionChanged" />
+                    <ComboBox Name="cmbFontSize" Width="50" IsEditable="True" TextBoxBase.TextChanged="cmbFontSize_TextChanged" />
+                </ToolBar>
+                <RichTextBox Name="rtbEditor" SelectionChanged="rtbEditor_SelectionChanged" />
+            </DockPanel>
         </Menu>
 
         <!--Body-->
