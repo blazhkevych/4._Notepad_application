@@ -3,27 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <ResourceDictionary>
-            <!--цвет фона заголовка-->
+        <!--<ResourceDictionary>
+            --><!--цвет фона заголовка--><!--
             <SolidColorBrush x:Key="HeaderBackgroundColor" Color="#202020" />
-            <!--цвет текста заголовка-->
+            --><!--цвет текста заголовка--><!--
             <SolidColorBrush x:Key="HeaderTextColor" Color="#bfbfbf" />
 
-            <!--цвет текста меню-->
+            --><!--цвет текста меню--><!--
             <SolidColorBrush x:Key="MenuTextColor" Color="#bfbfbf" />
-            <!--цвет фона меню-->
+            --><!--цвет фона меню--><!--
             <SolidColorBrush x:Key="MenuBackgroundColor" Color="#2c2c2c" />
 
-            <!--цвет фона тела-->
+            --><!--цвет фона тела--><!--
             <SolidColorBrush x:Key="BodyBackgroundColor" Color="#272727" />
-            <!--цвет текста тела-->
+            --><!--цвет текста тела--><!--
             <SolidColorBrush x:Key="BodyTextColor" Color="#ffffff" />
 
-            <!--цвет фона нижнего колонтитула-->
+            --><!--цвет фона нижнего колонтитула--><!--
             <SolidColorBrush x:Key="FooterBackgroundColor" Color="#202020" />
-            <!--цвет текста нижнего колонтитула-->
+            --><!--цвет текста нижнего колонтитула--><!--
             <SolidColorBrush x:Key="FooterTextColor" Color="#979797" />
-        </ResourceDictionary>
+        </ResourceDictionary>-->
 
     </Application.Resources>
 </Application>

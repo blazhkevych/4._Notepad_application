@@ -4,216 +4,60 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Untitled - Notepad" Height="720" Width="1024" >
-
-    <!--<FrameworkElement.Resources>
-        <RoutedUICommand x:Key="NewWindow" Text="New window"/>
-    </FrameworkElement.Resources>
-    <FrameworkElement.CommandBindings>
-        <CommandBinding Command="New" CanExecute="NewCommand_CanExecute" Executed="NewCommand_Executed"/>
-        <CommandBinding Command="{StaticResource NewWindow}" CanExecute="NewWIndowCommand_CanExecute" Executed="NewWindowCommand_Executed"/>
-    </FrameworkElement.CommandBindings>-->
+        Title="Untitled - Notepad" Height="720" Width="1024">
 
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Open" Executed="Open_Executed" />
         <CommandBinding Command="ApplicationCommands.Save" Executed="Save_Executed" />
+        <CommandBinding Command="ApplicationCommands.SaveAs" Executed="SaveAs_Executed" />
     </Window.CommandBindings>
 
     <Grid>
         <Grid.RowDefinitions>
             <!--Header-->
-            <RowDefinition Height="40" />
+            <RowDefinition Height="20" />
             <!--Body-->
             <RowDefinition />
             <!--Footer-->
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
         <!--Header-->
-        <Rectangle Fill="{StaticResource HeaderBackgroundColor}" />
         <!--Menu-->
-        <Menu Grid.Row="0" Background="Transparent" VerticalContentAlignment="Center" VerticalAlignment="Center"
-              Foreground="{StaticResource HeaderTextColor}">
-            <MenuItem Header="File" VerticalAlignment="Center" Background="{StaticResource HeaderBackgroundColor}">
-                <MenuItem x:Name="NewDocumentMenuItem" Header="New" InputGestureText="CTRL+N"
-                          Click="NewDocument_MenuItem_Click" Background="{StaticResource MenuBackgroundColor}"
-                          Foreground="{StaticResource MenuTextColor}" 
-                          Command=""
-                          />
-                <MenuItem x:Name="NewWindowMenuItem" Header="New Window" InputGestureText="CTRL+Shift+N"
-                          Click="NewWindow_MenuItem_Click" Background="{StaticResource MenuBackgroundColor}"
-                          Foreground="{StaticResource MenuTextColor}" />
-                <MenuItem x:Name="OpenMenuItem" Header="Open" InputGestureText="CTRL+O" Click="Open_MenuItem_Click"
-                          Background="{StaticResource MenuBackgroundColor}"
-                          Foreground="{StaticResource MenuTextColor}" />
-                <MenuItem x:Name="SaveMenuItem" Header="Save" InputGestureText="CTRL+S" Click="Save_MenuItem_Click"
-                          Background="{StaticResource MenuBackgroundColor}"
-                          Foreground="{StaticResource MenuTextColor}" />
+        <Menu VerticalContentAlignment="Center" VerticalAlignment="Center" Height="20">
+            <MenuItem Header="File" VerticalAlignment="Center" >
+                <!--Создать новый документ.-->
+                <MenuItem x:Name="NewDocumentMenuItem" Header="New" InputGestureText="CTRL+N"/>
+                <!--Открыть существующий.-->
+                <MenuItem x:Name="OpenMenuItem" Header="Open" InputGestureText="CTRL+O"
+                          Command="ApplicationCommands.Open" />
+                <!--Сохранить.-->
+                <MenuItem x:Name="SaveMenuItem" Header="Save" InputGestureText="CTRL+S" 
+                          Command="ApplicationCommands.Save"/>
+                <!--Сохранить как.-->
                 <MenuItem x:Name="SaveAsMenuItem" Header="Save As" InputGestureText="CTRL+Shift+S"
-                          Click="SaveAs_MenuItem_Click" Background="{StaticResource MenuBackgroundColor}"
-                          Foreground="{StaticResource MenuTextColor}" />
-                <Separator />
-                <MenuItem x:Name="PageSetupMenuItem" Header="Page Setup" Click="PageSetup_MenuItem_Click"
-                          Background="{StaticResource MenuBackgroundColor}"
-                          Foreground="{StaticResource MenuTextColor}" />
-                <MenuItem Header="Print" InputGestureText="CTRL+P" Background="{StaticResource MenuBackgroundColor}"
-                          Foreground="{StaticResource MenuTextColor}" />
-                <MenuItem x:Name="ExitMenuItem" Header="Exit" Click="Exit_MenuItem_Click"
-                          Background="{StaticResource MenuBackgroundColor}"
-                          Foreground="{StaticResource MenuTextColor}" />
+                          Click="SaveAs_MenuItem_Click" />
             </MenuItem>
             <MenuItem Header="Edit">
-                <MenuItem x:Name="UndoMenuItem" Header="Undo" InputGestureText="CTRL+Z" Click="Undo_MenuItem_Click"
-                          Background="{StaticResource MenuBackgroundColor}"
-                          Foreground="{StaticResource MenuTextColor}" />
-                <Separator />
-                <MenuItem x:Name="CutMenuItem" Header="Cut" InputGestureText="CTRL+X" Click="Cut_MenuItem_Click"
-                          Background="{StaticResource MenuBackgroundColor}"
-                          Foreground="{StaticResource MenuTextColor}" />
-                <MenuItem x:Name="CopyMenuItem" Header="Copy" InputGestureText="CTRL+C" Click="Copy_MenuItem_Click"
-                          Background="{StaticResource MenuBackgroundColor}"
-                          Foreground="{StaticResource MenuTextColor}" />
-                <MenuItem x:Name="PasteMenuItem" Header="Paste" InputGestureText="CTRL+V" Click="Paste_MenuItem_Click"
-                          Background="{StaticResource MenuBackgroundColor}"
-                          Foreground="{StaticResource MenuTextColor}" />
-                <MenuItem x:Name="DeleteMenuItem" Header="Delete" InputGestureText="Del" Click="Delete_MenuItem_Click"
-                          Background="{StaticResource MenuBackgroundColor}"
-                          Foreground="{StaticResource MenuTextColor}" />
-                <Separator />
-                <MenuItem Header="Find" InputGestureText="CTRL+F" Background="{StaticResource MenuBackgroundColor}"
-                          Foreground="{StaticResource MenuTextColor}" />
-                <MenuItem Header="Find Next" InputGestureText="F3" Background="{StaticResource MenuBackgroundColor}"
-                          Foreground="{StaticResource MenuTextColor}" />
-                <MenuItem Header="Find Previous" InputGestureText="Shift+F3"
-                          Background="{StaticResource MenuBackgroundColor}"
-                          Foreground="{StaticResource MenuTextColor}" />
-                <MenuItem Header="Replace" x:Name="ReplaceMenuItem" InputGestureText="CTRL+H"
-                          Click="Replace_MenuItem_Click" Background="{StaticResource MenuBackgroundColor}"
-                          Foreground="{StaticResource MenuTextColor}" />
-                <MenuItem Header="Go to" InputGestureText="CTRL+G" Background="{StaticResource MenuBackgroundColor}"
-                          Foreground="{StaticResource MenuTextColor}" />
-                <Separator />
-                <MenuItem x:Name="SelectAllMenuItem" Header="Select all" InputGestureText="CTRL+A"
-                          Click="SelectAll_MenuItem_Click" Background="{StaticResource MenuBackgroundColor}"
-                          Foreground="{StaticResource MenuTextColor}" />
-                <MenuItem x:Name="TimeDateMenuItem" Header="Time/Date" InputGestureText="F5"
-                          Click="TimeDate_MenuItem_Click" Background="{StaticResource MenuBackgroundColor}"
-                          Foreground="{StaticResource MenuTextColor}" />
-                <Separator />
-                <MenuItem Header="Font" InputGestureText="CTRL+0" Background="{StaticResource MenuBackgroundColor}"
-                          Foreground="{StaticResource MenuTextColor}"/>
-            </MenuItem>
-            <MenuItem Header="View">
-                <MenuItem Header="Zoom" Background="{StaticResource MenuBackgroundColor}"
-                          Foreground="{StaticResource MenuTextColor}">
-                    <MenuItem x:Name="ZoomInMenuItem" Header="Zoom in" InputGestureText="CTRL+Plus"
-                              Click="ZoomIn_MenuItem_Click" Background="{StaticResource MenuBackgroundColor}"
-                              Foreground="{StaticResource MenuTextColor}" />
-                    <MenuItem x:Name="ZoomOutMenuItem" Header="Zoom out" InputGestureText="CTRL+Minus"
-                              Click="ZoomOut_MenuItem_Click" Background="{StaticResource MenuBackgroundColor}"
-                              Foreground="{StaticResource MenuTextColor}" />
-                    <MenuItem x:Name="ZoomRestoreMenuItem" Header="Restore default zoom" InputGestureText="CTRL+0"
-                              Click="ZoomRestore_MenuItem_Click" Background="{StaticResource MenuBackgroundColor}"
-                              Foreground="{StaticResource MenuTextColor}" />
-                </MenuItem>
-                <Separator />
-                <MenuItem x:Name="ShowStatusBarMenuItem" Header="Status" IsCheckable="True" IsChecked="True"
-                          Click="ShowStatusBar_MenuItem_Click" Background="{StaticResource MenuBackgroundColor}"
-                          Foreground="{StaticResource MenuTextColor}" />
-                <MenuItem x:Name="WordWrapMenuItem" Header="Word Wrap" IsCheckable="True" IsChecked="True"
-                          Click="WordWrap_MenuItem_Click" Background="{StaticResource MenuBackgroundColor}"
-                          Foreground="{StaticResource MenuTextColor}" />
+                <!--Копировать.-->
+                <MenuItem x:Name="CopyMenuItem" Header="Copy" InputGestureText="CTRL+C" Click="Copy_MenuItem_Click"/>
+                <!--Вырезать.-->
+                <MenuItem x:Name="CutMenuItem" Header="Cut" InputGestureText="CTRL+X" Click="Cut_MenuItem_Click"/>
+                <!--Вставить.-->
+                <MenuItem x:Name="PasteMenuItem" Header="Paste" InputGestureText="CTRL+V" Click="Paste_MenuItem_Click"/>
+                <!--Удалить.-->
+                <MenuItem x:Name="DeleteMenuItem" Header="Delete" InputGestureText="Del" Click="Delete_MenuItem_Click"/>
             </MenuItem>
         </Menu>
 
         <!--Body-->
-        <Rectangle Fill="{StaticResource BodyBackgroundColor}" Grid.Row="1" />
-        <!--<TextBox x:Name="TextArea"
-                 Grid.Row="1"
-                 Background="Transparent"
-                 BorderThickness="0" Padding="20" FontSize="16"
-                 FontFamily="Lucida Console"
-                 Foreground="{StaticResource BodyTextColor}" CaretBrush="White"
-                 AcceptsReturn="True"
-                 TextWrapping="Wrap" TextChanged="TextArea_TextChanged"
-                 VerticalScrollBarVisibility="Auto" />-->
-        <RichTextBox x:Name="TextArea"
+        <Rectangle Grid.Row="1" />
+        <RichTextBox x:Name="TextEditor"
                      Grid.Row="1"
                      Background="Transparent"
                      BorderThickness="0" Padding="20" FontSize="16"
                      FontFamily="Lucida Console"
-                     Foreground="{StaticResource BodyTextColor}"  
                      CaretBrush="White"
                      AcceptsReturn="True"
                      VerticalScrollBarVisibility="Auto" />
-        <!--Footer-->
-        <Rectangle Fill="{StaticResource FooterBackgroundColor}" Grid.Row="2" />
-        <Grid x:Name="StatusBar" Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition Width="120" />
-                <ColumnDefinition Width="120" />
-                <ColumnDefinition Width="120" />
-            </Grid.ColumnDefinitions>
-            <!--Stats Ln/Col-->
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0" >
-                <TextBlock Text="Ln" Margin="0,0,5,0" Foreground="{StaticResource FooterTextColor}" />
-                <TextBlock x:Name="LineCountText" Text="0" Foreground="{StaticResource FooterTextColor}"/>
-                <TextBlock Text=", " Foreground="{StaticResource FooterTextColor}"/>
-                <TextBlock Text="Col" Margin="0,0,5,0" Foreground="{StaticResource FooterTextColor}"/>
-                <TextBlock x:Name="ColumnCountText" Text="0" Foreground="{StaticResource FooterTextColor}"/>
-            </StackPanel>
-            <!--zoom-->
-            <TextBlock Grid.Column="1" Text="100%" VerticalAlignment="Center" Margin="10,0" Foreground="{StaticResource FooterTextColor}"/>
-            <Rectangle Width="1" Grid.Column="1" HorizontalAlignment="Left" Fill="#FF232323" Margin="0 5 " />
-            <!--format-->
-            <TextBlock Grid.Column="2" Text="Windows (CRLF)" VerticalAlignment="Center" Margin="10,0" Foreground="{StaticResource FooterTextColor}"/>
-            <Rectangle Width="1" Grid.Column="2" HorizontalAlignment="Left" Fill="#FF232323" Margin="0 5 " />
-            <!--encoding-->
-            <TextBlock Grid.Column="3" Text="UTF-8" VerticalAlignment="Center" Margin="10,0" Foreground="{StaticResource FooterTextColor}"/>
-            <Rectangle Width="1" Grid.Column="3" HorizontalAlignment="Left" Fill="#FF232323" Margin="0 5 " />
-        </Grid>
-
-
-        <!--<DockPanel>
-            <Menu DockPanel.Dock="Top">
-                <MenuItem Header="File">
-                    <MenuItem Header="New" Command="New" />
-                    <MenuItem Header="New window" Command="{StaticResource NewWindow}"/>
-                    <MenuItem Header="Open" />
-                    <MenuItem Header="Save" />
-                    <MenuItem Header="Save as" />
-                    <Separator />
-                    <MenuItem Header="Page setup" />
-                    <MenuItem Header="Print" />
-                    <Separator />
-                    <MenuItem Header="Exit" />
-                </MenuItem>
-                <MenuItem Header="Edit">
-                    <MenuItem Header="Cut" />
-                    <MenuItem Header="Copy" />
-                    <MenuItem Header="Insert" />
-                    <MenuItem Header="Delete" />
-                    <Separator />
-                    <MenuItem Header="Find" />
-                    <MenuItem Header="Find next" />
-                    <MenuItem Header="Find earlier" />
-                    <MenuItem Header="Replace" />
-                    <MenuItem Header="Go" />
-                    <Separator />
-                    <MenuItem Header="Choose all" />
-                    <MenuItem Header="Time and date" />
-                </MenuItem>
-                <MenuItem Header="View">
-                    <MenuItem Header="Scale">
-                        <MenuItem Header="Increase" />
-                        <MenuItem Header="Decrease" />
-                        <MenuItem Header="Restore default scale" />
-                    </MenuItem>
-                    <MenuItem Header="Status bar" />
-                    <MenuItem Header="World wrap" />
-                </MenuItem>
-            </Menu>
-            <TextBox AcceptsReturn="True" Name="TxtEditor" />
-        </DockPanel>-->
     </Grid>
 </Window>
