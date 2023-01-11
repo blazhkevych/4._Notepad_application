@@ -46,20 +46,21 @@ public partial class MainWindow : Window
         if (dlg.ShowDialog() == true)
         {
             var fileStream = new FileStream(dlg.FileName, FileMode.Open);
-            var range = new TextRange(TextEditor.Document.ContentStart, TextEditor.Document.ContentEnd);
-            range.Load(fileStream, DataFormats.Rtf);
+            //var range = new TextRange(TextEditor.Document.ContentStart, TextEditor.Document.ContentEnd);
+            //range.Load(fileStream, DataFormats.Rtf);
         }
     }
 
     private void Save_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-        var dlg = new SaveFileDialog();
-        dlg.Filter = "Rich Text Format (*.rtf)|*.rtf|All files (*.*)|*.*";
-        if (dlg.ShowDialog() == true)
+        SaveFileDialog dialog = new SaveFileDialog()
         {
-            var fileStream = new FileStream(dlg.FileName, FileMode.Create);
-            var range = new TextRange(TextEditor.Document.ContentStart, TextEditor.Document.ContentEnd);
-            range.Save(fileStream, DataFormats.Rtf);
+            Filter = "Text Files(*.txt)|*.txt|All(*.*)|*"
+        };
+
+        if (dialog.ShowDialog() == true)
+        {
+            File.WriteAllText(dialog.FileName, TextEditor.Text);
         }
     }
 
@@ -68,57 +69,26 @@ public partial class MainWindow : Window
         //throw new NotImplementedException();
     }
 
-
+    // Обработчик нажатия File --> New.
     private void New_Executed(object sender, ExecutedRoutedEventArgs e)
     {
         // Проверить есть ли введенные данные в TextBox
-        
-        
-        
-        
-        
-
-
-        //if (TextEditor.Document. != true)
-        //{
-        //    // Предложить сохранить данные.
-        //    var result = MessageBox.Show($"Do you want to save changes to the \"{NameOfTheCurrentFile}\" ?", "Notepad", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
-        //    if (result == MessageBoxResult.Yes)
-        //    {
-        //        // Сохранить данные.
-        //        Save_Executed(sender, e);
-        //    }
-        //    else if (result == MessageBoxResult.Cancel)
-        //    {
-        //        // Отменить действие.
-        //        return;
-        //    }
-        //}
-
-
-
-
-        // Если пользователь нажал кнопку "Yes", то сохранить файл, если "No", то не сохранять.
-        // Если пользователь нажал кнопку "Cancel", то не сохранять файл и не создавать новый.
-
-
-
-        // Создать новый файл.
-        // Create a new file.
-        TextEditor.Document.Blocks.Clear();
-        
-        
-        // todo: Add a question before opening: "Do you want to save changes to the file WITHOUT A NAME?" if the file have not been saved yet.
+        if (String.IsNullOrEmpty(TextEditor.Text))
+            return;
+        else
+            // Сохранить данные.
+            Save_Executed(sender, e);
     }
 
     private void cmbFontFamily_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (cmbFontFamily.SelectedItem != null)
-            TextEditor.Selection.ApplyPropertyValue(TextElement.FontFamilyProperty, cmbFontFamily.SelectedItem);
+        //if (cmbFontFamily.SelectedItem != null)
+        //    TextEditor.Selection.ApplyPropertyValue(TextElement.FontFamilyProperty, cmbFontFamily.SelectedItem);
     }
 
     private void cmbFontSize_TextChanged(object sender, TextChangedEventArgs e)
     {
-        TextEditor.Selection.ApplyPropertyValue(TextElement.FontSizeProperty, cmbFontSize.Text);
+        //TextEditor.Selection.ApplyPropertyValue(TextElement.FontSizeProperty, cmbFontSize.Text);
     }
 }
+
