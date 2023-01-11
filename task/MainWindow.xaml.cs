@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -70,22 +71,29 @@ public partial class MainWindow : Window
 
     private void New_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-        // Проверить есть ли несохраненные данные.
-        if (TextEditor.Document.Blocks.Count > 0)
-        {
-            // Предложить сохранить данные.
-            var result = MessageBox.Show($"Do you want to save changes to the \"{NameOfTheCurrentFile}\" ?", "Notepad", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Yes)
-            {
-                // Сохранить данные.
-                Save_Executed(sender, e);
-            }
-            else if (result == MessageBoxResult.Cancel)
-            {
-                // Отменить действие.
-                return;
-            }
-        }
+        // Проверить есть ли введенные данные в TextBox
+        
+        
+        
+        
+        
+
+
+        //if (TextEditor.Document. != true)
+        //{
+        //    // Предложить сохранить данные.
+        //    var result = MessageBox.Show($"Do you want to save changes to the \"{NameOfTheCurrentFile}\" ?", "Notepad", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+        //    if (result == MessageBoxResult.Yes)
+        //    {
+        //        // Сохранить данные.
+        //        Save_Executed(sender, e);
+        //    }
+        //    else if (result == MessageBoxResult.Cancel)
+        //    {
+        //        // Отменить действие.
+        //        return;
+        //    }
+        //}
 
 
 

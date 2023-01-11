@@ -70,7 +70,7 @@
         </Menu>
         <!--Body-->
         <Rectangle Grid.Row="1" />
-        <RichTextBox Name="TextEditor"
+        <TextBox Name="TextEditor"
                      Grid.Row="1"
                      Background="Transparent"
                      BorderThickness="0" Padding="20" FontSize="16"
