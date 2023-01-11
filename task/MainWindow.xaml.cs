@@ -17,7 +17,10 @@ namespace task;
 // Develop a notepad application that has the same functionality
 // as the standard Notepad Windows operating system.
 
-// todo: add borders to the menu/submenu
+// todo: maybe you need to increase the line with the text editor
+// todo: when text is selected, change the indicators on the panel in accordance with the selected
+// todo: it is possible to change the indicators in the panel according to the location of the cursor when nothing is selected.
+
 public partial class MainWindow : Window
 {
     public MainWindow()
@@ -67,6 +70,36 @@ public partial class MainWindow : Window
 
     private void New_Executed(object sender, ExecutedRoutedEventArgs e)
     {
+        // Проверить есть ли несохраненные данные.
+        if (TextEditor.Document.Blocks.Count > 0)
+        {
+            // Предложить сохранить данные.
+            var result = MessageBox.Show($"Do you want to save changes to the \"{NameOfTheCurrentFile}\" ?", "Notepad", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                // Сохранить данные.
+                Save_Executed(sender, e);
+            }
+            else if (result == MessageBoxResult.Cancel)
+            {
+                // Отменить действие.
+                return;
+            }
+        }
+
+
+
+
+        // Если пользователь нажал кнопку "Yes", то сохранить файл, если "No", то не сохранять.
+        // Если пользователь нажал кнопку "Cancel", то не сохранять файл и не создавать новый.
+
+
+
+        // Создать новый файл.
+        // Create a new file.
+        TextEditor.Document.Blocks.Clear();
+        
+        
         // todo: Add a question before opening: "Do you want to save changes to the file WITHOUT A NAME?" if the file have not been saved yet.
     }
 
@@ -79,20 +112,5 @@ public partial class MainWindow : Window
     private void cmbFontSize_TextChanged(object sender, TextChangedEventArgs e)
     {
         TextEditor.Selection.ApplyPropertyValue(TextElement.FontSizeProperty, cmbFontSize.Text);
-    }
-
-    private void TextEditor_SelectionChanged(object sender, RoutedEventArgs e)
-    {
-        var temp = TextEditor.Selection.GetPropertyValue(TextElement.FontWeightProperty);
-        btnBold.IsChecked = temp != DependencyProperty.UnsetValue && temp.Equals(FontWeights.Bold);
-        temp = TextEditor.Selection.GetPropertyValue(TextElement.FontStyleProperty);
-        //btnItalic.IsChecked = (temp != DependencyProperty.UnsetValue) && (temp.Equals(FontStyles.Italic));
-        temp = TextEditor.Selection.GetPropertyValue(Inline.TextDecorationsProperty);
-        //btnUnderline.IsChecked = (temp != DependencyProperty.UnsetValue) && (temp.Equals(TextDecorations.Underline));
-
-        temp = TextEditor.Selection.GetPropertyValue(TextElement.FontFamilyProperty);
-        cmbFontFamily.SelectedItem = temp;
-        temp = TextEditor.Selection.GetPropertyValue(TextElement.FontSizeProperty);
-        cmbFontSize.Text = temp.ToString();
     }
 }
