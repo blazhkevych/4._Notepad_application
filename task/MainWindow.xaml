@@ -35,27 +35,27 @@
             </Menu.BitmapEffect>
             <MenuItem Header="File" VerticalAlignment="Center" FontSize="16">
                 <!--Создать новый документ.-->
-                <MenuItem x:Name="NewDocumentMenuItem" Header="New"
+                <MenuItem Name="NewDocumentMenuItem" Header="New"
                           Command="ApplicationCommands.New" />
                 <!--Открыть существующий.-->
-                <MenuItem x:Name="OpenMenuItem" Header="Open" InputGestureText="CTRL+O"
+                <MenuItem Name="OpenMenuItem" Header="Open" InputGestureText="CTRL+O"
                           Command="ApplicationCommands.Open" />
                 <!--Сохранить.-->
-                <MenuItem x:Name="SaveMenuItem" Header="Save" InputGestureText="CTRL+S"
+                <MenuItem Name="SaveMenuItem" Header="Save" InputGestureText="CTRL+S"
                           Command="ApplicationCommands.Save" />
                 <!--Сохранить как.-->
-                <MenuItem x:Name="SaveAsMenuItem" Header="Save As"
+                <MenuItem Name="SaveAsMenuItem" Header="Save As" InputGestureText="CTRL+SHIFT+S"
                           Command="ApplicationCommands.SaveAs" />
             </MenuItem>
             <MenuItem Header="Edit" FontSize="16">
                 <!--Копировать.-->
-                <MenuItem x:Name="CopyMenuItem" Header="Copy" InputGestureText="CTRL+C" />
+                <MenuItem Name="CopyMenuItem" Header="Copy" InputGestureText="CTRL+C" />
                 <!--Вырезать.-->
-                <MenuItem x:Name="CutMenuItem" Header="Cut" InputGestureText="CTRL+X" />
+                <MenuItem Name="CutMenuItem" Header="Cut" InputGestureText="CTRL+X" />
                 <!--Вставить.-->
-                <MenuItem x:Name="PasteMenuItem" Header="Paste" InputGestureText="CTRL+V" />
+                <MenuItem Name="PasteMenuItem" Header="Paste" InputGestureText="CTRL+V" />
                 <!--Удалить.-->
-                <MenuItem x:Name="DeleteMenuItem" Header="Delete" InputGestureText="Del" />
+                <MenuItem Name="DeleteMenuItem" Header="Delete" InputGestureText="Del" />
             </MenuItem>
             <DockPanel>
                 <ToolBar DockPanel.Dock="Top">
@@ -77,7 +77,6 @@
                     <ComboBox Name="cmbColors" 
                               SelectedIndex="0" 
                               Width="150"
-                              SelectionChanged="cmbColors_SelectionChanged"
                               ItemsSource="{x:Static local:ColorName.Colors}"
                               DisplayMemberPath="Name" 
                               SelectedValuePath="Color"

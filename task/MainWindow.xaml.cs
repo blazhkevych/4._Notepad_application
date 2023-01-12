@@ -76,12 +76,4 @@ public partial class MainWindow : Window
     {
         TextEditor.Selection.ApplyPropertyValue(TextElement.FontSizeProperty, cmbFontSize.Text);
     }
-
-
-    private void cmbColors_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (cmbColors.SelectedItem != null)
-            TextEditor.Selection.ApplyPropertyValue(TextElement.ForegroundProperty, cmbColors.SelectedItem);
-
-    }
 }
