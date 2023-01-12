@@ -73,8 +73,8 @@ public partial class MainWindow : Window
         var contentStartCheck = TextEditor.Document.ContentStart;
         var contentEndCheck = TextEditor.Document.ContentEnd;
         var rangeCheck = new TextRange(contentStartCheck, contentEndCheck);
-        // Если текстовый редактор пустой и имя файла еще не задано (не сохранялся еще).
-        if (rangeCheck.Text == "\r\n" && NameOfTheCurrentFile == "Untitled")
+        // Если не сохранялся еще.
+        if (NameOfTheCurrentFile == "Untitled")
         {
             var dlg = new SaveFileDialog();
             dlg.Filter = "Rich Text Format (*.rtf)|*.rtf|All files (*.*)|*.*";
