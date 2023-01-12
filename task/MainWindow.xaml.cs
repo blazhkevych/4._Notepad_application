@@ -27,7 +27,7 @@ public partial class MainWindow : Window
     }
 
     // Name of the current file.
-    string NameOfTheCurrentFile { get; set; } = "Untitled";
+    string NameOfTheCurrentFile { get; set; } = "Untitled - Notepad";
 
     private void Open_Executed(object sender, ExecutedRoutedEventArgs e)
     {
@@ -70,9 +70,9 @@ public partial class MainWindow : Window
     }
 
     // Отрабатывает на ctr + s.
-    private void Save_Executed(object sender, ExecutedRoutedEventArgs e)
+    private void Save_Executed(object sender, ExecutedRoutedEventArgs e) // OK
     {
-        NameOfTheCurrentFile = Title;
+        //NameOfTheCurrentFile = Title;
         var contentStartCheck = TextEditor.Document.ContentStart;
         var contentEndCheck = TextEditor.Document.ContentEnd;
         var rangeCheck = new TextRange(contentStartCheck, contentEndCheck);
@@ -85,6 +85,7 @@ public partial class MainWindow : Window
             dlg.FileName = "*.rtf";
             if (dlg.ShowDialog() == true)
             {
+                NameOfTheCurrentFile = dlg.FileName;
                 var fileStream = new FileStream(dlg.FileName, FileMode.Create);
                 rangeCheck.Save(fileStream, DataFormats.Rtf);
                 fileStream.Close();
