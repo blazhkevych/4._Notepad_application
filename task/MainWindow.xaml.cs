@@ -34,8 +34,20 @@ public partial class MainWindow : Window
         var contentStartCheck = TextEditor.Document.ContentStart;
         var contentEndCheck = TextEditor.Document.ContentEnd;
         var rangeCheck = new TextRange(contentStartCheck, contentEndCheck);
+        // Если в текстовом редакторе пусто.
         if (rangeCheck.Text == "\r\n")
         {
+            var dlg = new OpenFileDialog();
+            dlg.Filter = "Rich Text Format (*.rtf)|*.rtf|All files (*.*)|*.*";
+            if (dlg.ShowDialog() == true)
+            {
+                NameOfTheCurrentFile = dlg.FileName;
+                var fileStream = new FileStream(dlg.FileName, FileMode.Open);
+                var range = new TextRange(TextEditor.Document.ContentStart, TextEditor.Document.ContentEnd);
+                range.Load(fileStream, DataFormats.Rtf);
+            }
+            // Изменить название окна на имя файла.
+            Title = NameOfTheCurrentFile + " - Notepad";
         }
         else
         {
@@ -50,7 +62,6 @@ public partial class MainWindow : Window
                 var range = new TextRange(TextEditor.Document.ContentStart, TextEditor.Document.ContentEnd);
                 range.Load(fileStream, DataFormats.Rtf);
             }
-
             // Изменить название окна на имя файла.
             Title = NameOfTheCurrentFile + " - Notepad";
         }
