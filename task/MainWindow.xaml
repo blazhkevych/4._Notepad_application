@@ -8,7 +8,7 @@
         Title="Untitled - Notepad" Height="720" Width="1024" MinWidth="500" MinHeight="500" FontSize="16">
 
     <Window.Resources>
-        <DrawingAttributes x:Key="drawingAttributes" FitToCurve="false" Width="5" Height="5"/>
+        <DrawingAttributes x:Key="drawingAttributes" FitToCurve="false" Width="5" Height="5" />
     </Window.Resources>
 
     <Window.CommandBindings>
@@ -30,9 +30,6 @@
         <!--Header-->
         <!--Menu-->
         <Menu VerticalContentAlignment="Center" VerticalAlignment="Center" Height="28">
-            <Menu.BitmapEffect>
-                <DropShadowBitmapEffect />
-            </Menu.BitmapEffect>
             <MenuItem Header="File" VerticalAlignment="Center" FontSize="16">
                 <!--Создать новый документ.-->
                 <MenuItem Name="NewDocumentMenuItem" Header="New"
@@ -60,31 +57,30 @@
             <DockPanel>
                 <ToolBar DockPanel.Dock="Top">
                     <Button Command="EditingCommands.ToggleBold"
-                                  Name="btnBold"
-                                  Padding="0, 0,0, 0"
-                                  Content="B"
-                                  HorizontalContentAlignment="Center"
-                                  FontSize="16" BorderThickness="1,1,1,0" FontWeight="Bold" Width="32" Height="24"
-                    >
+                            Name="btnBold"
+                            Padding="0, 0,0, 0"
+                            Content="B"
+                            HorizontalContentAlignment="Center"
+                            FontSize="16" BorderThickness="1,1,1,0" FontWeight="Bold" Width="32" Height="24">
                         <Button.ToolTip>
                             <ToolTip>Make text bold</ToolTip>
                         </Button.ToolTip>
                     </Button>
                     <Separator />
-                    <ComboBox Name="cmbFontFamily" 
-                              Width="150" 
+                    <ComboBox Name="cmbFontFamily"
+                              Width="150"
                               SelectionChanged="cmbFontFamily_SelectionChanged" />
-                    <ComboBox Name="cmbFontSize" 
-                              Width="50" 
+                    <ComboBox Name="cmbFontSize"
+                              Width="50"
                               IsEditable="True"
                               TextBoxBase.TextChanged="cmbFontSize_TextChanged" />
-                    <ComboBox Name="cmbColors" 
-                              SelectedIndex="0" 
+                    <ComboBox Name="cmbColors"
+                              SelectedIndex="0"
                               Width="150"
                               ItemsSource="{x:Static local:ColorName.Colors}"
-                              DisplayMemberPath="Name" 
+                              DisplayMemberPath="Name"
                               SelectedValuePath="Color"
-                              SelectedValue="{Binding Color, Source={StaticResource drawingAttributes}}"/>
+                              SelectedValue="{Binding Color, Source={StaticResource drawingAttributes}}" />
                 </ToolBar>
             </DockPanel>
         </Menu>
