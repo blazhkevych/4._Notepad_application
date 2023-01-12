@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:task"
         mc:Ignorable="d"
         Title="Untitled - Notepad" Height="720" Width="1024" MinWidth="500" MinHeight="500" FontSize="16">
 
@@ -60,15 +61,27 @@
                 <ToolBar DockPanel.Dock="Top">
                     <ToggleButton Command="EditingCommands.ToggleBold"
                                   Name="btnBold">
-                        <Image Source="Images/bold-button-of-letter-b-symbol.png" />
+                        <Image Source="Images/bold-button-of-letter-b-symbol.png"/>
                         <ToggleButton.ToolTip>
                             <ToolTip>Make text bold</ToolTip>
                         </ToggleButton.ToolTip>
                     </ToggleButton>
                     <Separator />
-                    <ComboBox Name="cmbFontFamily" Width="150" SelectionChanged="cmbFontFamily_SelectionChanged" />
-                    <ComboBox Name="cmbFontSize" Width="50" IsEditable="True"
+                    <ComboBox Name="cmbFontFamily" 
+                              Width="150" 
+                              SelectionChanged="cmbFontFamily_SelectionChanged" />
+                    <ComboBox Name="cmbFontSize" 
+                              Width="50" 
+                              IsEditable="True"
                               TextBoxBase.TextChanged="cmbFontSize_TextChanged" />
+                    <ComboBox Name="cmbColors" 
+                              SelectedIndex="0" 
+                              Width="150"
+                              SelectionChanged="cmbColors_SelectionChanged"
+                              ItemsSource="{x:Static local:ColorName.Colors}"
+                              DisplayMemberPath="Name" 
+                              SelectedValuePath="Color"
+                              SelectedValue="{Binding Color, Source={StaticResource drawingAttributes}}"/>
                 </ToolBar>
             </DockPanel>
         </Menu>

@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Net.NetworkInformation;
+using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace task;
 
@@ -22,4 +26,4 @@ public class ColorName
             new ColorName("Зелённый", System.Windows.Media.Colors.Green),
             new ColorName("Синий", System.Windows.Media.Colors.Yellow)
         });
-}
+}                          

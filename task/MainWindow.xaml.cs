@@ -3,18 +3,12 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using Microsoft.Win32;
 
 namespace task;
-// Приложение "Блокнот"
-// Разработать приложение «Блокнот», обладающее той же функциональностью,
-// что и стандартный «Блокнот» операционной системы Windows.
-
-// Notepad application
-// Develop a notepad application that has the same functionality
-// as the standard Notepad Windows operating system.
 
 // todo: maybe you need to increase the line with the text editor
 // todo: when text is selected, change the indicators on the panel in accordance with the selected
@@ -44,19 +38,21 @@ public partial class MainWindow : Window
         if (dlg.ShowDialog() == true)
         {
             var fileStream = new FileStream(dlg.FileName, FileMode.Open);
-            //var range = new TextRange(TextEditor.Document.ContentStart, TextEditor.Document.ContentEnd);
-            //range.Load(fileStream, DataFormats.Rtf);
+            var range = new TextRange(TextEditor.Document.ContentStart, TextEditor.Document.ContentEnd);
+            range.Load(fileStream, DataFormats.Rtf);
         }
     }
 
     private void Save_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-        var dialog = new SaveFileDialog
+        var dlg = new SaveFileDialog();
+        dlg.Filter = "Rich Text Format (*.rtf)|*.rtf|All files (*.*)|*.*";
+        if (dlg.ShowDialog() == true)
         {
-            Filter = "Text Files(*.txt)|*.txt|All(*.*)|*"
-        };
-
-        if (dialog.ShowDialog() == true) File.WriteAllText(dialog.FileName, TextEditor.Text);
+            var fileStream = new FileStream(dlg.FileName, FileMode.Create);
+            var range = new TextRange(TextEditor.Document.ContentStart, TextEditor.Document.ContentEnd);
+            range.Save(fileStream, DataFormats.Rtf);
+        }
     }
 
     private void SaveAs_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -64,24 +60,28 @@ public partial class MainWindow : Window
         //throw new NotImplementedException();
     }
 
-    // Обработчик нажатия File --> New.
+
     private void New_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-        // Проверить есть ли введенные данные в TextBox
-        if (string.IsNullOrEmpty(TextEditor.Text))
-            return;
-        // Сохранить данные.
-        Save_Executed(sender, e);
+        // todo: Add a question before opening: "Do you want to save changes to the file WITHOUT A NAME?" if the file have not been saved yet.
     }
 
     private void cmbFontFamily_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        //if (cmbFontFamily.SelectedItem != null)
-        //    TextEditor.Selection.ApplyPropertyValue(TextElement.FontFamilyProperty, cmbFontFamily.SelectedItem);
+        if (cmbFontFamily.SelectedItem != null)
+            TextEditor.Selection.ApplyPropertyValue(TextElement.FontFamilyProperty, cmbFontFamily.SelectedItem);
     }
 
     private void cmbFontSize_TextChanged(object sender, TextChangedEventArgs e)
     {
-        //TextEditor.Selection.ApplyPropertyValue(TextElement.FontSizeProperty, cmbFontSize.Text);
+        TextEditor.Selection.ApplyPropertyValue(TextElement.FontSizeProperty, cmbFontSize.Text);
+    }
+
+
+    private void cmbColors_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (cmbColors.SelectedItem != null)
+            TextEditor.Selection.ApplyPropertyValue(TextElement.ForegroundProperty, cmbColors.SelectedItem);
+
     }
 }
