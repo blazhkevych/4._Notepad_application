@@ -77,6 +77,7 @@ public partial class MainWindow : Window
         if (NameOfTheCurrentFile == "Untitled")
         {
             var dlg = new SaveFileDialog();
+            NameOfTheCurrentFile = dlg.FileName;
             dlg.Filter = "Rich Text Format (*.rtf)|*.rtf|All files (*.*)|*.*";
             dlg.FileName = "*.rtf";
             if (dlg.ShowDialog() == true)
@@ -84,9 +85,8 @@ public partial class MainWindow : Window
                 var fileStream = new FileStream(dlg.FileName, FileMode.Create);
                 rangeCheck.Save(fileStream, DataFormats.Rtf);
             }
-            // Изменить название окна на имя файла.
-            Title = NameOfTheCurrentFile + " - Notepad";
         }
+        // Если уже сохранялся.
         else
         {
             var dlg = new SaveFileDialog();
@@ -98,6 +98,8 @@ public partial class MainWindow : Window
                 rangeCheck.Save(fileStream, DataFormats.Rtf);
             }
         }
+        // Изменить название окна на имя файла.
+        Title = NameOfTheCurrentFile + " - Notepad";
     }
 
     private void SaveAs_Executed(object sender, ExecutedRoutedEventArgs e)
