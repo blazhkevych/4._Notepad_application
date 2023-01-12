@@ -30,7 +30,7 @@ public partial class MainWindow : Window
     string NameOfTheCurrentFile { get; set; } = "Untitled - Notepad";
 
     // Отрабатывает на ctr + o.
-    private void Open_Executed(object sender, ExecutedRoutedEventArgs e)
+    private void Open_Executed(object sender, ExecutedRoutedEventArgs e) // todo: продолжить проверять этот метод.
     {
         var contentStartCheck = TextEditor.Document.ContentStart;
         var contentEndCheck = TextEditor.Document.ContentEnd;
