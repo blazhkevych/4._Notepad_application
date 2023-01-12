@@ -21,7 +21,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <!--Header-->
-            <RowDefinition Height="22" />
+            <RowDefinition Height="28" />
             <!--Body-->
             <RowDefinition />
             <!--Footer-->
@@ -29,7 +29,7 @@
         </Grid.RowDefinitions>
         <!--Header-->
         <!--Menu-->
-        <Menu VerticalContentAlignment="Center" VerticalAlignment="Center" Height="24">
+        <Menu VerticalContentAlignment="Center" VerticalAlignment="Center" Height="28">
             <Menu.BitmapEffect>
                 <DropShadowBitmapEffect />
             </Menu.BitmapEffect>
@@ -59,13 +59,17 @@
             </MenuItem>
             <DockPanel>
                 <ToolBar DockPanel.Dock="Top">
-                    <ToggleButton Command="EditingCommands.ToggleBold"
-                                  Name="btnBold">
-                        <Image Source="Images/bold-button-of-letter-b-symbol.png"/>
-                        <ToggleButton.ToolTip>
+                    <Button Command="EditingCommands.ToggleBold"
+                                  Name="btnBold"
+                                  Padding="0, 0,0, 0"
+                                  Content="B"
+                                  HorizontalContentAlignment="Center"
+                                  FontSize="16" BorderThickness="1,1,1,0" FontWeight="Bold" Width="32" Height="24"
+                    >
+                        <Button.ToolTip>
                             <ToolTip>Make text bold</ToolTip>
-                        </ToggleButton.ToolTip>
-                    </ToggleButton>
+                        </Button.ToolTip>
+                    </Button>
                     <Separator />
                     <ComboBox Name="cmbFontFamily" 
                               Width="150" 
