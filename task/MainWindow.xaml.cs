@@ -29,6 +29,7 @@ public partial class MainWindow : Window
     // Name of the current file.
     string NameOfTheCurrentFile { get; set; } = "Untitled - Notepad";
 
+    // Отрабатывает на ctr + o.
     private void Open_Executed(object sender, ExecutedRoutedEventArgs e)
     {
         var contentStartCheck = TextEditor.Document.ContentStart;
