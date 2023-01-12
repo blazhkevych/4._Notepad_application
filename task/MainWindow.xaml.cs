@@ -27,7 +27,7 @@ public partial class MainWindow : Window
     }
 
     // Name of the current file.
-    string NameOfTheCurrentFile { get; set; } = "Untitled - Notepad";
+    private string NameOfTheCurrentFile { get; set; } = "Untitled - Notepad";
 
     // Отрабатывает на ctr + o.
     private void Open_Executed(object sender, ExecutedRoutedEventArgs e) // todo: продолжить проверять этот метод.
@@ -48,6 +48,7 @@ public partial class MainWindow : Window
                 range.Load(fileStream, DataFormats.Rtf);
                 fileStream.Close();
             }
+
             // Изменить название окна на имя файла.
             Title = NameOfTheCurrentFile + " - Notepad";
         }
@@ -65,6 +66,7 @@ public partial class MainWindow : Window
                 range.Load(fileStream, DataFormats.Rtf);
                 fileStream.Close();
             }
+
             // Изменить название окна на имя файла.
             Title = NameOfTheCurrentFile + " - Notepad";
         }
@@ -99,11 +101,11 @@ public partial class MainWindow : Window
             rangeCheck.Save(fileStream, DataFormats.Rtf);
             fileStream.Close();
         }
+
         // Изменить название окна на имя файла.
         if (Title == NameOfTheCurrentFile)
             return;
-        else
-            Title = NameOfTheCurrentFile + " - Notepad";
+        Title = NameOfTheCurrentFile + " - Notepad";
     }
 
     private void SaveAs_Executed(object sender, ExecutedRoutedEventArgs e)
