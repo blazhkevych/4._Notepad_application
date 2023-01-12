@@ -6,6 +6,10 @@
         mc:Ignorable="d"
         Title="Untitled - Notepad" Height="720" Width="1024" MinWidth="500" MinHeight="500" FontSize="16">
 
+    <Window.Resources>
+        <DrawingAttributes x:Key="drawingAttributes" FitToCurve="false" Width="5" Height="5"/>
+    </Window.Resources>
+
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.New" Executed="New_Executed" />
         <CommandBinding Command="ApplicationCommands.Open" Executed="Open_Executed" />
@@ -30,7 +34,7 @@
             </Menu.BitmapEffect>
             <MenuItem Header="File" VerticalAlignment="Center" FontSize="16">
                 <!--Создать новый документ.-->
-                <MenuItem x:Name="NewDocumentMenuItem" Header="New" 
+                <MenuItem x:Name="NewDocumentMenuItem" Header="New"
                           Command="ApplicationCommands.New" />
                 <!--Открыть существующий.-->
                 <MenuItem x:Name="OpenMenuItem" Header="Open" InputGestureText="CTRL+O"
@@ -54,7 +58,7 @@
             </MenuItem>
             <DockPanel>
                 <ToolBar DockPanel.Dock="Top">
-                    <ToggleButton Command="EditingCommands.ToggleBold" 
+                    <ToggleButton Command="EditingCommands.ToggleBold"
                                   Name="btnBold">
                         <Image Source="Images/bold-button-of-letter-b-symbol.png" />
                         <ToggleButton.ToolTip>
@@ -70,7 +74,7 @@
         </Menu>
         <!--Body-->
         <Rectangle Grid.Row="1" />
-        <TextBox Name="TextEditor"
+        <RichTextBox Name="TextEditor"
                      Grid.Row="1"
                      Background="Transparent"
                      BorderThickness="0" Padding="20" FontSize="16"

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using Microsoft.Win32;
@@ -53,15 +51,12 @@ public partial class MainWindow : Window
 
     private void Save_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-        SaveFileDialog dialog = new SaveFileDialog()
+        var dialog = new SaveFileDialog
         {
             Filter = "Text Files(*.txt)|*.txt|All(*.*)|*"
         };
 
-        if (dialog.ShowDialog() == true)
-        {
-            File.WriteAllText(dialog.FileName, TextEditor.Text);
-        }
+        if (dialog.ShowDialog() == true) File.WriteAllText(dialog.FileName, TextEditor.Text);
     }
 
     private void SaveAs_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -73,11 +68,10 @@ public partial class MainWindow : Window
     private void New_Executed(object sender, ExecutedRoutedEventArgs e)
     {
         // Проверить есть ли введенные данные в TextBox
-        if (String.IsNullOrEmpty(TextEditor.Text))
+        if (string.IsNullOrEmpty(TextEditor.Text))
             return;
-        else
-            // Сохранить данные.
-            Save_Executed(sender, e);
+        // Сохранить данные.
+        Save_Executed(sender, e);
     }
 
     private void cmbFontFamily_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -91,4 +85,3 @@ public partial class MainWindow : Window
         //TextEditor.Selection.ApplyPropertyValue(TextElement.FontSizeProperty, cmbFontSize.Text);
     }
 }
-
