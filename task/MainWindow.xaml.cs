@@ -45,6 +45,7 @@ public partial class MainWindow : Window
                 var fileStream = new FileStream(dlg.FileName, FileMode.Open);
                 var range = new TextRange(TextEditor.Document.ContentStart, TextEditor.Document.ContentEnd);
                 range.Load(fileStream, DataFormats.Rtf);
+                fileStream.Close();
             }
             // Изменить название окна на имя файла.
             Title = NameOfTheCurrentFile + " - Notepad";
@@ -61,6 +62,7 @@ public partial class MainWindow : Window
                 var fileStream = new FileStream(dlg.FileName, FileMode.Open);
                 var range = new TextRange(TextEditor.Document.ContentStart, TextEditor.Document.ContentEnd);
                 range.Load(fileStream, DataFormats.Rtf);
+                fileStream.Close();
             }
             // Изменить название окна на имя файла.
             Title = NameOfTheCurrentFile + " - Notepad";
@@ -70,11 +72,12 @@ public partial class MainWindow : Window
     // Отрабатывает на ctr + s.
     private void Save_Executed(object sender, ExecutedRoutedEventArgs e)
     {
+        NameOfTheCurrentFile = Title;
         var contentStartCheck = TextEditor.Document.ContentStart;
         var contentEndCheck = TextEditor.Document.ContentEnd;
         var rangeCheck = new TextRange(contentStartCheck, contentEndCheck);
         // Если не сохранялся еще.
-        if (NameOfTheCurrentFile == "Untitled")
+        if (NameOfTheCurrentFile == "Untitled - Notepad")
         {
             var dlg = new SaveFileDialog();
             NameOfTheCurrentFile = dlg.FileName;
@@ -84,6 +87,7 @@ public partial class MainWindow : Window
             {
                 var fileStream = new FileStream(dlg.FileName, FileMode.Create);
                 rangeCheck.Save(fileStream, DataFormats.Rtf);
+                fileStream.Close();
             }
         }
         // Если уже сохранялся.
@@ -91,9 +95,13 @@ public partial class MainWindow : Window
         {
             var fileStream = new FileStream(NameOfTheCurrentFile, FileMode.Create);
             rangeCheck.Save(fileStream, DataFormats.Rtf);
+            fileStream.Close();
         }
         // Изменить название окна на имя файла.
-        Title = NameOfTheCurrentFile + " - Notepad";
+        if (Title == NameOfTheCurrentFile)
+            return;
+        else
+            Title = NameOfTheCurrentFile + " - Notepad";
     }
 
     private void SaveAs_Executed(object sender, ExecutedRoutedEventArgs e)
