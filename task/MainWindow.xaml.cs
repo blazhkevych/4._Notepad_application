@@ -73,8 +73,18 @@ public partial class MainWindow : Window
         var contentStartCheck = TextEditor.Document.ContentStart;
         var contentEndCheck = TextEditor.Document.ContentEnd;
         var rangeCheck = new TextRange(contentStartCheck, contentEndCheck);
-        if (rangeCheck.Text == "\r\n")
-            return;
+        // Если текстовый редактор пустой и имя файла еще не задано (не сохранялся еще).
+        if (rangeCheck.Text == "\r\n" && NameOfTheCurrentFile == "Untitled")
+        {
+            var dlg = new SaveFileDialog();
+            dlg.Filter = "Rich Text Format (*.rtf)|*.rtf|All files (*.*)|*.*";
+            dlg.FileName = "*.rtf";
+            if (dlg.ShowDialog() == true)
+            {
+                var fileStream = new FileStream(dlg.FileName, FileMode.Create);
+                rangeCheck.Save(fileStream, DataFormats.Rtf);
+            }
+        }
         else
         {
             var dlg = new SaveFileDialog();
