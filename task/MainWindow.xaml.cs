@@ -89,14 +89,8 @@ public partial class MainWindow : Window
         // Если уже сохранялся.
         else
         {
-            var dlg = new SaveFileDialog();
-            dlg.Filter = "Rich Text Format (*.rtf)|*.rtf|All files (*.*)|*.*";
-            dlg.FileName = NameOfTheCurrentFile;
-            if (dlg.ShowDialog() == true)
-            {
-                var fileStream = new FileStream(dlg.FileName, FileMode.Create);
-                rangeCheck.Save(fileStream, DataFormats.Rtf);
-            }
+            var fileStream = new FileStream(NameOfTheCurrentFile, FileMode.Create);
+            rangeCheck.Save(fileStream, DataFormats.Rtf);
         }
         // Изменить название окна на имя файла.
         Title = NameOfTheCurrentFile + " - Notepad";
