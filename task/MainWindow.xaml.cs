@@ -27,31 +27,48 @@ public partial class MainWindow : Window
     }
 
     // Name of the current file.
-    private string NameOfTheCurrentFile { get; } = "Untitled";
+     string NameOfTheCurrentFile { get; set; } = "Untitled";
 
     private void Open_Executed(object sender, ExecutedRoutedEventArgs e)
     {
         // todo: Add a question before opening: "Do you want to save changes to the file WITHOUT A NAME?"
 
+        // Сохранить имя открываемого файла.
+
+
+
+
         var dlg = new OpenFileDialog();
         dlg.Filter = "Rich Text Format (*.rtf)|*.rtf|All files (*.*)|*.*";
         if (dlg.ShowDialog() == true)
         {
+            NameOfTheCurrentFile = dlg.FileName;
             var fileStream = new FileStream(dlg.FileName, FileMode.Open);
             var range = new TextRange(TextEditor.Document.ContentStart, TextEditor.Document.ContentEnd);
             range.Load(fileStream, DataFormats.Rtf);
         }
+
+        // Изменить название окна на имя файла.
+        Title = NameOfTheCurrentFile + " - Notepad";
+
     }
 
     private void Save_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-        var dlg = new SaveFileDialog();
-        dlg.Filter = "Rich Text Format (*.rtf)|*.rtf|All files (*.*)|*.*";
-        if (dlg.ShowDialog() == true)
+        var contentStartCheck = TextEditor.Document.ContentStart;
+        var contentEndCheck = TextEditor.Document.ContentEnd;
+        var rangeCheck = new TextRange(contentStartCheck, contentEndCheck);
+        if (rangeCheck.Text == "\r\n")
+            return;
+        else
         {
-            var fileStream = new FileStream(dlg.FileName, FileMode.Create);
-            var range = new TextRange(TextEditor.Document.ContentStart, TextEditor.Document.ContentEnd);
-            range.Save(fileStream, DataFormats.Rtf);
+            var dlg = new SaveFileDialog();
+            dlg.Filter = "Rich Text Format (*.rtf)|*.rtf|All files (*.*)|*.*";
+            if (dlg.ShowDialog() == true)
+            {
+                var fileStream = new FileStream(dlg.FileName, FileMode.Create);
+                rangeCheck.Save(fileStream, DataFormats.Rtf);
+            }
         }
     }
 
