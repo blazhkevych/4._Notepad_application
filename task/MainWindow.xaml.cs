@@ -67,6 +67,7 @@ public partial class MainWindow : Window
         }
     }
 
+    // Отрабатывает на ctr + s.
     private void Save_Executed(object sender, ExecutedRoutedEventArgs e)
     {
         var contentStartCheck = TextEditor.Document.ContentStart;
