@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -12,7 +11,6 @@ using Microsoft.Win32;
 
 namespace task;
 
-// todo: maybe you need to increase the line with the text editor
 // todo: when text is selected, change the indicators on the panel in accordance with the selected
 // todo: it is possible to change the indicators in the panel according to the location of the cursor when nothing is selected.
 
@@ -31,16 +29,13 @@ public partial class MainWindow : Window
     // Name of the current file name by default.
     private string NameOfTheCurrentFile { get; set; } = "Untitled - Notepad";
 
-    // Is data dirty.
-    bool isDataDirty = false;
-
-    // Отрабатывает на ctr + o.
+    // Works on ctrl + o.
     private void Open_Executed(object sender, ExecutedRoutedEventArgs e) // todo: продолжить проверять этот метод.
     {
         var contentStartCheck = TextEditor.Document.ContentStart;
         var contentEndCheck = TextEditor.Document.ContentEnd;
         var rangeCheck = new TextRange(contentStartCheck, contentEndCheck);
-        // Если в текстовом редакторе пусто.
+        // If the text editor is empty.
         if (rangeCheck.Text == "\r\n")
         {
             var dlg = new OpenFileDialog();
@@ -54,12 +49,12 @@ public partial class MainWindow : Window
                 fileStream.Close();
             }
 
-            // Изменить название окна на имя файла.
+            // Change window title to file name.
             Title = NameOfTheCurrentFile + " - Notepad";
         }
         else
         {
-            // Если в текстовом редакторе есть текст, то сохраняем его.
+            // If there is text in the text editor, then save it.
             Save_Executed(sender, e);
             var dlg = new OpenFileDialog();
             dlg.Filter = "Rich Text Format (*.rtf)|*.rtf|All files (*.*)|*.*";
@@ -72,18 +67,18 @@ public partial class MainWindow : Window
                 fileStream.Close();
             }
 
-            // Изменить название окна на имя файла.
+            // Change window title to file name.
             Title = NameOfTheCurrentFile + " - Notepad";
         }
     }
 
-    // Отрабатывает на ctr + s.
+    // Works on ctrl + s.
     private void Save_Executed(object sender, ExecutedRoutedEventArgs e) // OK
     {
         var contentStartCheck = TextEditor.Document.ContentStart;
         var contentEndCheck = TextEditor.Document.ContentEnd;
         var rangeCheck = new TextRange(contentStartCheck, contentEndCheck);
-        // Если не сохранялся еще.
+        // If not saved yet.
         if (NameOfTheCurrentFile == "Untitled - Notepad")
         {
             var dlg = new SaveFileDialog();
@@ -98,7 +93,7 @@ public partial class MainWindow : Window
                 fileStream.Close();
             }
         }
-        // Если уже сохранялся.
+        // If already saved.
         else
         {
             var fileStream = new FileStream(NameOfTheCurrentFile, FileMode.Create);
@@ -106,7 +101,7 @@ public partial class MainWindow : Window
             fileStream.Close();
         }
 
-        // Изменить название окна на имя файла.
+        // Change window title to file name.
         if (Title == NameOfTheCurrentFile)
             return;
         Title = NameOfTheCurrentFile + " - Notepad";
@@ -127,30 +122,25 @@ public partial class MainWindow : Window
             fileStream.Close();
         }
 
-        // Изменить название окна на имя файла.
+        // Change window title to file name.
         Title = NameOfTheCurrentFile + " - Notepad";
     }
 
-    // Отрабатывает на ctrl + n.
+    // Works on ctrl + n.
     private void New_Executed(object sender, ExecutedRoutedEventArgs e)
     {
         var contentStartCheck = TextEditor.Document.ContentStart;
         var contentEndCheck = TextEditor.Document.ContentEnd;
         var rangeCheck = new TextRange(contentStartCheck, contentEndCheck);
-        // Если в текстовом редакторе пусто.
-        if (rangeCheck.Text == "\r\n" && NameOfTheCurrentFile == "Untitled - Notepad")
-        {
-            return;
-        }
-        else
-        {
-            // Если в текстовом редакторе есть текст, то сохраняем его.
-            Save_Executed(sender, e);
-            // Очищаем текстовый редактор.
-            TextEditor.Document.Blocks.Clear();
-            // Изменить название окна на имя файла по умолчанию.
-            Title = "Untitled - Notepad";
-        }
+        // If the text editor is empty.
+        if (rangeCheck.Text == "\r\n" && NameOfTheCurrentFile == "Untitled - Notepad") return;
+
+        // If there is text in the text editor, then save it.
+        Save_Executed(sender, e);
+        // Clear the text editor.
+        TextEditor.Document.Blocks.Clear();
+        // Change window title to default filename.
+        Title = "Untitled - Notepad";
     }
 
     private void cmbFontFamily_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -166,21 +156,21 @@ public partial class MainWindow : Window
 
     private void Window_Closing(object sender, CancelEventArgs e)
     {
-        //throw new System.NotImplementedException();
-        // Вы хотите сохранить изменения перед закрытием ?
+        // Do you want to save changes before closing ?
         var contentStartCheck = TextEditor.Document.ContentStart;
         var contentEndCheck = TextEditor.Document.ContentEnd;
         var rangeCheck = new TextRange(contentStartCheck, contentEndCheck);
         if (rangeCheck.Text == "\r\n" && NameOfTheCurrentFile == "Untitled - Notepad")
         {
-            this.Close();
+            Close();
         }
         else
         {
-            var result = MessageBox.Show("Do you want to save changes to " + NameOfTheCurrentFile + "?", "Notepad", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+            var result = MessageBox.Show("Do you want to save changes to " + NameOfTheCurrentFile + "?", "Notepad",
+                MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
-                // Если не сохранялся еще.
+                // If not saved yet.
                 if (NameOfTheCurrentFile == "Untitled - Notepad")
                 {
                     var dlg = new SaveFileDialog();
@@ -195,7 +185,7 @@ public partial class MainWindow : Window
                         fileStream.Close();
                     }
                 }
-                // Если уже сохранялся.
+                // If already saved.
                 else
                 {
                     var fileStream = new FileStream(NameOfTheCurrentFile, FileMode.Create);
@@ -203,14 +193,13 @@ public partial class MainWindow : Window
                     fileStream.Close();
                 }
 
-                // Изменить название окна на имя файла.
+                // Change window title to file name.
                 if (Title == NameOfTheCurrentFile)
                     return;
                 Title = NameOfTheCurrentFile + " - Notepad";
             }
             else if (result == MessageBoxResult.No)
             {
-                return;
             }
             else if (result == MessageBoxResult.Cancel)
             {
