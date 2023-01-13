@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:task"
         mc:Ignorable="d"
         Title="Untitled - Notepad" Height="720" Width="1024" MinWidth="500" MinHeight="500" FontSize="16"
-        Closing="Window_Closing" Closed="Window_Closed">
+        Closing="Window_Closing" >
 
     <Window.Resources>
         <DrawingAttributes x:Key="drawingAttributes" FitToCurve="false" Width="5" Height="5" />
@@ -17,7 +17,6 @@
         <CommandBinding Command="ApplicationCommands.Open" Executed="Open_Executed" />
         <CommandBinding Command="ApplicationCommands.Save" Executed="Save_Executed" />
         <CommandBinding Command="ApplicationCommands.SaveAs" Executed="SaveAs_Executed" />
-        <CommandBinding Command="ApplicationCommands.Close" Executed="Close_Executed"/>
     </Window.CommandBindings>
 
     <Grid>

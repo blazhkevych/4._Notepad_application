@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -79,7 +80,6 @@ public partial class MainWindow : Window
     // Отрабатывает на ctr + s.
     private void Save_Executed(object sender, ExecutedRoutedEventArgs e) // OK
     {
-        //NameOfTheCurrentFile = Title;
         var contentStartCheck = TextEditor.Document.ContentStart;
         var contentEndCheck = TextEditor.Document.ContentEnd;
         var rangeCheck = new TextRange(contentStartCheck, contentEndCheck);
@@ -164,14 +164,59 @@ public partial class MainWindow : Window
         TextEditor.Selection.ApplyPropertyValue(TextElement.FontSizeProperty, cmbFontSize.Text);
     }
 
-    private void Close_Executed(object sender, ExecutedRoutedEventArgs e)
+    private void Window_Closing(object sender, CancelEventArgs e)
     {
-        // возможно что-то нужно сохранить ...
-        this.Close();
-    }
+        //throw new System.NotImplementedException();
+        // Вы хотите сохранить изменения перед закрытием ?
+        var contentStartCheck = TextEditor.Document.ContentStart;
+        var contentEndCheck = TextEditor.Document.ContentEnd;
+        var rangeCheck = new TextRange(contentStartCheck, contentEndCheck);
+        if (rangeCheck.Text == "\r\n" && NameOfTheCurrentFile == "Untitled - Notepad")
+        {
+            this.Close();
+        }
+        else
+        {
+            var result = MessageBox.Show("Do you want to save changes to " + NameOfTheCurrentFile + "?", "Notepad", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                // Если не сохранялся еще.
+                if (NameOfTheCurrentFile == "Untitled - Notepad")
+                {
+                    var dlg = new SaveFileDialog();
+                    NameOfTheCurrentFile = dlg.FileName;
+                    dlg.Filter = "Rich Text Format (*.rtf)|*.rtf|All files (*.*)|*.*";
+                    dlg.FileName = "*.rtf";
+                    if (dlg.ShowDialog() == true)
+                    {
+                        NameOfTheCurrentFile = dlg.FileName;
+                        var fileStream = new FileStream(dlg.FileName, FileMode.Create);
+                        rangeCheck.Save(fileStream, DataFormats.Rtf);
+                        fileStream.Close();
+                    }
+                }
+                // Если уже сохранялся.
+                else
+                {
+                    var fileStream = new FileStream(NameOfTheCurrentFile, FileMode.Create);
+                    rangeCheck.Save(fileStream, DataFormats.Rtf);
+                    fileStream.Close();
+                }
 
-    private void Window_Closing(object? sender, CancelEventArgs e)
-    {
-        throw new System.NotImplementedException();
+                // Изменить название окна на имя файла.
+                if (Title == NameOfTheCurrentFile)
+                    return;
+                Title = NameOfTheCurrentFile + " - Notepad";
+            }
+            else if (result == MessageBoxResult.No)
+            {
+                this.Close();
+                return;
+            }
+            else if (result == MessageBoxResult.Cancel)
+            {
+                e.Cancel = true;
+            }
+        }
     }
 }
