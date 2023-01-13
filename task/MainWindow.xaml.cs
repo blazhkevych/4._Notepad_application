@@ -30,7 +30,7 @@ public partial class MainWindow : Window
     private string NameOfTheCurrentFile { get; set; } = "Untitled - Notepad";
 
     // Works on ctrl + o.
-    private void Open_Executed(object sender, ExecutedRoutedEventArgs e) // todo: продолжить проверять этот метод.
+    private void Open_Executed(object sender, ExecutedRoutedEventArgs e) 
     {
         var contentStartCheck = TextEditor.Document.ContentStart;
         var contentEndCheck = TextEditor.Document.ContentEnd;
