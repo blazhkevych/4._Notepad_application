@@ -129,4 +129,10 @@ public partial class MainWindow : Window
     {
         TextEditor.Selection.ApplyPropertyValue(TextElement.FontSizeProperty, cmbFontSize.Text);
     }
+
+    private void Close_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+        // возможно что-то нужно сохранить ...
+        this.Close();
+    }
 }
