@@ -18,6 +18,9 @@
         <CommandBinding Command="ApplicationCommands.Save" Executed="Save_Executed" />
         <CommandBinding Command="ApplicationCommands.SaveAs" Executed="SaveAs_Executed" />
         <CommandBinding Command="Copy" />
+        <CommandBinding Command="Cut" />
+        <CommandBinding Command="Paste" />
+        <CommandBinding Command="Delete" />
     </Window.CommandBindings>
 
     <Grid>
@@ -50,11 +53,11 @@
                 <!--Копировать.-->
                 <MenuItem Name="CopyMenuItem" Header="Copy" InputGestureText="CTRL+C" Command="Copy" />
                 <!--Вырезать.-->
-                <MenuItem Name="CutMenuItem" Header="Cut" InputGestureText="CTRL+X" />
+                <MenuItem Name="CutMenuItem" Header="Cut" InputGestureText="CTRL+X" Command="Cut"/>
                 <!--Вставить.-->
-                <MenuItem Name="PasteMenuItem" Header="Paste" InputGestureText="CTRL+V" />
+                <MenuItem Name="PasteMenuItem" Header="Paste" InputGestureText="CTRL+V" Command="Paste"/>
                 <!--Удалить.-->
-                <MenuItem Name="DeleteMenuItem" Header="Delete" InputGestureText="Del" />
+                <MenuItem Name="DeleteMenuItem" Header="Delete" InputGestureText="Del" Command="Delete"/>
             </MenuItem>
             <DockPanel>
                 <ToolBar DockPanel.Dock="Top">
