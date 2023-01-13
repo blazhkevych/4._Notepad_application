@@ -210,7 +210,6 @@ public partial class MainWindow : Window
             }
             else if (result == MessageBoxResult.No)
             {
-                this.Close();
                 return;
             }
             else if (result == MessageBoxResult.Cancel)
