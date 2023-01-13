@@ -26,7 +26,7 @@ public partial class MainWindow : Window
         cmbFontSize.ItemsSource = new List<double> { 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72 };
     }
 
-    // Name of the current file.
+    // Name of the current file name by default.
     private string NameOfTheCurrentFile { get; set; } = "Untitled - Notepad";
 
     // Отрабатывает на ctr + o.
@@ -113,10 +113,27 @@ public partial class MainWindow : Window
         //throw new NotImplementedException();
     }
 
-
+    // Отрабатывает на ctrl + n.
     private void New_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-        // todo: Add a question before opening: "Do you want to save changes to the file WITHOUT A NAME?" if the file have not been saved yet.
+        var contentStartCheck = TextEditor.Document.ContentStart;
+        var contentEndCheck = TextEditor.Document.ContentEnd;
+        var rangeCheck = new TextRange(contentStartCheck, contentEndCheck);
+        // Если в текстовом редакторе пусто.
+        if (rangeCheck.Text == "\r\n")
+        {
+            return;
+        }
+        else
+        {
+            // Если в текстовом редакторе есть текст, то сохраняем его.
+            Save_Executed(sender, e);
+            // Очищаем текстовый редактор.
+            TextEditor.Document.Blocks.Clear();
+            // Изменить название окна на имя файла по умолчани.
+
+        }
+
     }
 
     private void cmbFontFamily_SelectionChanged(object sender, SelectionChangedEventArgs e)
