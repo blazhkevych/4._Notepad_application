@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -28,6 +29,9 @@ public partial class MainWindow : Window
 
     // Name of the current file name by default.
     private string NameOfTheCurrentFile { get; set; } = "Untitled - Notepad";
+
+    // Is data dirty.
+    bool isDataDirty = false;
 
     // Отрабатывает на ctr + o.
     private void Open_Executed(object sender, ExecutedRoutedEventArgs e) // todo: продолжить проверять этот метод.
@@ -110,7 +114,21 @@ public partial class MainWindow : Window
 
     private void SaveAs_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-        //throw new NotImplementedException();
+        var dlg = new SaveFileDialog();
+        NameOfTheCurrentFile = dlg.FileName;
+        dlg.Filter = "Rich Text Format (*.rtf)|*.rtf|All files (*.*)|*.*";
+        dlg.FileName = "*.rtf";
+        if (dlg.ShowDialog() == true)
+        {
+            NameOfTheCurrentFile = dlg.FileName;
+            var fileStream = new FileStream(dlg.FileName, FileMode.Create);
+            var range = new TextRange(TextEditor.Document.ContentStart, TextEditor.Document.ContentEnd);
+            range.Save(fileStream, DataFormats.Rtf);
+            fileStream.Close();
+        }
+
+        // Изменить название окна на имя файла.
+        Title = NameOfTheCurrentFile + " - Notepad";
     }
 
     // Отрабатывает на ctrl + n.
@@ -120,7 +138,7 @@ public partial class MainWindow : Window
         var contentEndCheck = TextEditor.Document.ContentEnd;
         var rangeCheck = new TextRange(contentStartCheck, contentEndCheck);
         // Если в текстовом редакторе пусто.
-        if (rangeCheck.Text == "\r\n")
+        if (rangeCheck.Text == "\r\n" && NameOfTheCurrentFile == "Untitled - Notepad")
         {
             return;
         }
@@ -130,10 +148,9 @@ public partial class MainWindow : Window
             Save_Executed(sender, e);
             // Очищаем текстовый редактор.
             TextEditor.Document.Blocks.Clear();
-            // Изменить название окна на имя файла по умолчани.
-
+            // Изменить название окна на имя файла по умолчанию.
+            Title = "Untitled - Notepad";
         }
-
     }
 
     private void cmbFontFamily_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -151,5 +168,10 @@ public partial class MainWindow : Window
     {
         // возможно что-то нужно сохранить ...
         this.Close();
+    }
+
+    private void Window_Closing(object? sender, CancelEventArgs e)
+    {
+        throw new System.NotImplementedException();
     }
 }

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:task"
         mc:Ignorable="d"
-        Title="Untitled - Notepad" Height="720" Width="1024" MinWidth="500" MinHeight="500" FontSize="16">
+        Title="Untitled - Notepad" Height="720" Width="1024" MinWidth="500" MinHeight="500" FontSize="16"
+        Closing="Window_Closing" Closed="Window_Closed">
 
     <Window.Resources>
         <DrawingAttributes x:Key="drawingAttributes" FitToCurve="false" Width="5" Height="5" />
@@ -94,6 +95,6 @@
                      FontFamily="Lucida Console"
                      CaretBrush="Black"
                      AcceptsReturn="True"
-                     VerticalScrollBarVisibility="Auto" />
+                     VerticalScrollBarVisibility="Auto"  />
     </Grid>
 </Window>
