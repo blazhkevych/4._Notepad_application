@@ -94,7 +94,7 @@
         <RichTextBox Name="TextEditor"
                      Grid.Row="1"
                      Background="Transparent"
-                     BorderThickness="0" Padding="20" FontSize="16"
+                     BorderThickness="0" Padding="0" FontSize="16"
                      FontFamily="Lucida Console"
                      CaretBrush="Black"
                      AcceptsReturn="True"
